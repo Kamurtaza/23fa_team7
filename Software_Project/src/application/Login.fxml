@@ -12,13 +12,13 @@
    <children>
       <PasswordField fx:id="txtAreaPassword" layoutX="195.0" layoutY="210.0" prefHeight="35.0" prefWidth="211.0" promptText="Password" />
       <TextField fx:id="txtAreaUsername" layoutX="195.0" layoutY="155.0" prefHeight="35.0" prefWidth="211.0" promptText="Username" />
-      <Button fx:id="btnLogin" layoutX="340.0" layoutY="257.0" mnemonicParsing="false" onAction="#userLogin" prefHeight="35.0" prefWidth="66.0" text="Login" />
+      <Button fx:id="btnLogin" layoutX="340.0" layoutY="257.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="66.0" text="Login" />
       <Text layoutX="235.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER">
          <font>
             <Font name="Arial Bold" size="48.0" />
          </font>
       </Text>
-      <Hyperlink fx:id="linkRegister" layoutX="195.0" layoutY="254.0" onAction="#registerAccount" text="Register an Account" />
-      <Hyperlink fx:id="linkVisitor" layoutX="195.0" layoutY="274.0" onAction="#visitorLogin" text="Continue as Visitor" />
+      <Hyperlink fx:id="linkRegister" layoutX="195.0" layoutY="254.0" onAction="#handleRegisterEvent" text="Register an Account" />
+      <Hyperlink fx:id="linkVisitor" layoutX="195.0" layoutY="274.0" onAction="#handleVisitorEvent" text="Continue as Visitor" />
    </children>
 </AnchorPane>
