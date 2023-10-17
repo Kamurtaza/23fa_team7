@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainControl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
    <children>
       <PasswordField fx:id="txtAreaPassword" layoutX="195.0" layoutY="210.0" prefHeight="35.0" prefWidth="211.0" promptText="Password" />
       <TextField fx:id="txtAreaUsername" layoutX="195.0" layoutY="155.0" prefHeight="35.0" prefWidth="211.0" promptText="Username" />
@@ -18,7 +18,7 @@
             <Font name="Arial Bold" size="48.0" />
          </font>
       </Text>
-      <Hyperlink fx:id="linkRegister" layoutX="195.0" layoutY="254.0" onAction="#handleRegisterEvent" text="Register an Account" />
-      <Hyperlink fx:id="linkVisitor" layoutX="195.0" layoutY="274.0" onAction="#handleVisitorEvent" text="Continue as Visitor" />
+      <Hyperlink fx:id="linkRegister" layoutX="195.0" layoutY="254.0" text="Register an Account" />
+      <Hyperlink fx:id="linkVisitor" layoutX="195.0" layoutY="274.0" text="Continue as Visitor" />
    </children>
 </AnchorPane>
