@@ -18,7 +18,7 @@
             <Font name="Arial Bold" size="48.0" />
          </font>
       </Text>
-      <Hyperlink fx:id="linkRegister" layoutX="195.0" layoutY="254.0" text="Register an Account" />
-      <Hyperlink fx:id="linkVisitor" layoutX="195.0" layoutY="274.0" text="Continue as Visitor" />
+      <Hyperlink fx:id="linkRegister" layoutX="195.0" layoutY="254.0" onAction="#handleRegisterEvent" text="Register an Account" />
+      <Hyperlink fx:id="linkVisitor" layoutX="195.0" layoutY="274.0" onAction="#handleVisitorEvent" text="Continue as Visitor" />
    </children>
 </AnchorPane>
