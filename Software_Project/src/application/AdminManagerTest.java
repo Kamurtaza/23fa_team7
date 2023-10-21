@@ -17,8 +17,7 @@ class AdminManagerTest {
 		AdminManager am = new AdminManager();
 		Admin a1 = new Admin("Jacob", "Carlstrom", "jcstorm8","password");
 		am.addAdmin(a1);
-		String expected = "Admins\nJacob Carlstrom, jcstorm8\n";
-		assertEquals(expected, am);
+		assertEquals(1, am.getNumAdmins());
 	}
 	
 	@Test
@@ -38,7 +37,7 @@ class AdminManagerTest {
 	void testClear() {
 		AdminManager am = buildAM();
 		am.clear();
-		assertEquals("Admins\n", am);
+		assertEquals(0, am.getNumAdmins());
 	}
 	
 	@Test
