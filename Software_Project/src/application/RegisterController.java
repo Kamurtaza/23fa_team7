@@ -26,4 +26,14 @@ public class RegisterController {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	@FXML
+	private void handleReturnEvent(ActionEvent event) throws Exception {
+		stage = (Stage) linkBack.getScene().getWindow();
+		root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+		
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
 }
