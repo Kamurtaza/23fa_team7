@@ -6,11 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class AdminManagerTest {
-	@Test
-	void testConstructor() {
-		AdminManager am = new AdminManager();
-		assertNotNull(am);
-	}
 	
 	@Test
 	void testAddAdmin() {
@@ -21,13 +16,13 @@ class AdminManagerTest {
 	}
 	
 	@Test
-	void testGetAdminNull() {
+	void testGetAdmin_Fail() {
 		AdminManager am = buildAM();
 		assertNull(am.getAdmin(""));
 	}
 	
 	@Test
-	void testGetAdminSuccess() {
+	void testGetAdmin_Success() {
 		AdminManager am = buildAM();
 		Admin expected = new Admin("Jacob", "Carlstrom", "jcstorm8", "password1");
 		assertEquals(expected, am.getAdmin("jcstorm8"));
@@ -50,6 +45,13 @@ class AdminManagerTest {
 	void testContainsAdmin_True() {
 		AdminManager am = buildAM();
 		assertTrue(am.containsAdmin("jcstorm8"));
+	}
+	
+	@Test
+	void testToString() {
+		AdminManager am = buildAM();
+		String expected = "Admins:\nJacob Carlstrom, jcstorm8\nBob Smith, ilikedogs7\nDave Gibson, dgibson\n";
+		assertEquals(expected, am.toString());
 	}
 	
 	/*
