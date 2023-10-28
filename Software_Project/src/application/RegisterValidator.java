@@ -2,19 +2,25 @@ package application;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class RegisterValidator {
-	private static final String USERS = "src/User.json";
+	private static final String USERS = "/Software_Project/json/users.json";
+
 	private JSONObject users;
 	private boolean userValid;
 	private boolean registerSuccess;
+	private List<String> errorMessages = new ArrayList<String>();
+	
+	
 	
 	public RegisterValidator() {
-		users = readJsonFile(USERS);
 	}
 	
 	private JSONObject readJsonFile(String filePath) {
@@ -29,6 +35,16 @@ public class RegisterValidator {
         }
         return users;
     }
+	
+	private void writeToJsonFile(JSONObject users) {
+		try (FileWriter file = new FileWriter(USERS)){
+			file.write(users.toJSONString());
+			file.flush();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 		
 	public boolean nameVal(String name) {
 		if (!name.isEmpty()) {
@@ -38,10 +54,20 @@ public class RegisterValidator {
 	}
 	
 	public boolean usernameVal(String username) {
-		if (!username.isEmpty()) {
-			return true;
+		if (username.isEmpty()) {
+			return false;
 		}
-		return false;
+		JSONObject users = readJsonFile(USERS);
+		JSONArray usersArray = (JSONArray)users.get("users");
+		for (Object userObj : usersArray) {
+			JSONObject user = (JSONObject) userObj;
+			String existUsername = (String) user.get("username");
+			if(existUsername.equals(username)) {
+				System.out.println("Username taken");
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	// Come back later to add actual password requirements
@@ -59,19 +85,58 @@ public class RegisterValidator {
 		return false;
 	}
 	
-	// Not sure if we want to restrict to certain age
-	// Come back later to add actual birthday requirements
-	//	public boolean birthVal() {
-	//		
-	//	}
-	
 	public boolean locationVal(String country, String state, String city) {
-		if (country.isEmpty() || state.isEmpty() || city.isEmpty()) {
-			return false;
+		if (!country.isEmpty() || !state.isEmpty() || !city.isEmpty()) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
-	public boolean isNewUser() {
+	@SuppressWarnings("unchecked")
+	public boolean validateRegistration(String username, String password, String rePassword, String name, String birthday, String country, String state, String city) {
+		errorMessages.clear();
+		userValid = true;
+		if (!nameVal(name)) {
+	        errorMessages.add("Name field cannot be empty");
+	        userValid = false;
+	    }
+
+	    if (!usernameVal(username)) {
+	        errorMessages.add("Username field cannot be empty or username is taken");
+	        userValid = false;
+	    }
+
+	    if (!passwordVal(password) || !passwordMatchVal(password, rePassword)) {
+	    	errorMessages.add("Passwords do not match or are invalid.");
+	        userValid = false;
+	    }
+
+	    if (!locationVal(country, state, city)) {
+	    	errorMessages.add("Invalid location.");
+	        userValid = false;
+	    }
+	    if(userValid) {
+	    	JSONObject newUser = new JSONObject();
+	    	newUser.put("username", username);
+	    	newUser.put("password", password); // Hash the password before saving it
+            newUser.put("name", name);
+            newUser.put("birthday", birthday);
+            JSONObject location = new JSONObject();
+            location.put("country", country);
+            location.put("state", state);
+            location.put("city", city);
+            
+            JSONObject users = readJsonFile(USERS);
+            JSONArray usersArray = (JSONArray)users.get("users");
+            usersArray.add(newUser);
+            users.put("users", usersArray);
+            
+            writeToJsonFile(users);
+	    }
+	    return userValid;
+	}
 	
+	public List<String> getErrorMessages(){
+		return errorMessages;
+	}
 }
