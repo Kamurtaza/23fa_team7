@@ -1,7 +1,35 @@
 package application;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class RegisterValidator {
+	private static final String USERS = "src/User.json";
+	private JSONObject users;
+	private boolean userValid;
+	private boolean registerSuccess;
 	
+	public RegisterValidator() {
+		users = readJsonFile(USERS);
+	}
+	
+	private JSONObject readJsonFile(String filePath) {
+        JSONParser parser = new JSONParser();
+        JSONObject users = null;
+
+        try (FileReader reader = new FileReader(filePath)) {
+            Object user = parser.parse(reader);
+            users = (JSONObject) user;
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+		
 	public boolean nameVal(String name) {
 		if (!name.isEmpty()) {
 			return true;
@@ -43,5 +71,7 @@ public class RegisterValidator {
 		}
 		return true;
 	}
+	
+	public boolean isNewUser() {
 	
 }
