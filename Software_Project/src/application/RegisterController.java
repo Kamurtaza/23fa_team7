@@ -50,6 +50,7 @@ public class RegisterController {
 		String password = txtAreaPassword.getText();
 		String rePassword = txtAreaPasswordConfirm.getText();
 		String name = txtAreaName.getText();
+		
 		LocalDate birthdate = pickerBirthday.getValue();
 		String birthday = birthdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		String country = txtAreaCountry.getText();

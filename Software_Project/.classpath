@@ -21,8 +21,14 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/mdami/OneDrive/Desktop/json-simple-1.1.1.jar" sourcepath="C:/Users/mdami/OneDrive/Desktop/json-simple">
+	<classpathentry kind="lib" path="C:/Users/mdami/OneDrive/Desktop/json-simple-1.1.1.jar">
 		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/mdami/OneDrive/Desktop/GSON/gson-2.10.1.jar" sourcepath="C:/Users/mdami/OneDrive/Desktop/GSON/gson-2.10.1-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/mdami/OneDrive/Desktop/GSON/"/>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>

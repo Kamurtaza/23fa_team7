@@ -4,18 +4,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class RegisterValidator {
-	private static final String USERS = "/Software_Project/json/users.json";
+	private static final String USERS = "C:\\Users\\mdami\\git\\Team7New\\23fa_team7\\Software_Project\\json\\users.json";
 
-	private JSONObject users;
 	private boolean userValid;
-	private boolean registerSuccess;
 	private List<String> errorMessages = new ArrayList<String>();
 	
 	
@@ -38,7 +37,9 @@ public class RegisterValidator {
 	
 	private void writeToJsonFile(JSONObject users) {
 		try (FileWriter file = new FileWriter(USERS)){
-			file.write(users.toJSONString());
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			String jsonString = gson.toJson(users);
+			file.write(jsonString);
 			file.flush();
 		}
 		catch (IOException e) {
@@ -86,10 +87,10 @@ public class RegisterValidator {
 	}
 	
 	public boolean locationVal(String country, String state, String city) {
-		if (!country.isEmpty() || !state.isEmpty() || !city.isEmpty()) {
-			return true;
+		if (country.isEmpty() || state.isEmpty() || city.isEmpty()) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -112,20 +113,22 @@ public class RegisterValidator {
 	    }
 
 	    if (!locationVal(country, state, city)) {
-	    	errorMessages.add("Invalid location.");
+	    	errorMessages.add("One or more location entries are empty.");
 	        userValid = false;
 	    }
 	    if(userValid) {
+	    	JSONObject location = new JSONObject();
+            location.put("country", country);
+            location.put("state", state);
+            location.put("city", city);
+	    	
 	    	JSONObject newUser = new JSONObject();
 	    	newUser.put("username", username);
 	    	newUser.put("password", password); // Hash the password before saving it
             newUser.put("name", name);
             newUser.put("birthday", birthday);
-            JSONObject location = new JSONObject();
-            location.put("country", country);
-            location.put("state", state);
-            location.put("city", city);
-            
+            newUser.put("location", location);
+                        
             JSONObject users = readJsonFile(USERS);
             JSONArray usersArray = (JSONArray)users.get("users");
             usersArray.add(newUser);
