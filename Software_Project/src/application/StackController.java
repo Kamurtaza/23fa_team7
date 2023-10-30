@@ -1,7 +1,5 @@
 package application;
 
-import java.io.File;
-
 public class StackController {
     private StackGui gui;
     private StackManager stackManager;
