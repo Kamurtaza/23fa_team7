@@ -1,6 +1,9 @@
 package application;
 
+import java.util.HashMap;
+
 public class Group {
+	HashMap <String, Post> posts = new HashMap<String, Post>();
 	private String title;
 	private Category category;
 	
@@ -15,6 +18,14 @@ public class Group {
 	
 	public Category getCategory() {
 		return category;
+	}
+	
+	public Post getPost(String text) {
+		return posts.get(text);
+	}
+	
+	public void addPost(Post p) {
+		posts.put(p.getText(), p);
 	}
 	
 	@Override
