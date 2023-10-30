@@ -1,4 +1,15 @@
 {
   "users": [
+    {
+      "birthday": "2023-10-01",
+      "password": "asdf",
+      "name": "asdf",
+      "location": {
+        "country": "asdf",
+        "city": "adf",
+        "state": "asdf"
+      },
+      "username": "asdf"
+    }
   ]
 }
