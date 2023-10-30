@@ -1,37 +1,15 @@
 {
   "users": [
     {
-      "birthday": "2023-10-05",
-      "password": "asdf",
-      "name": "asdf",
+      "birthday": "1000-01-01",
+      "password": "adminpassword",
+      "name": "ADMIN",
       "location": {
-        "country": "asdf",
-        "city": "asdf",
-        "state": "asdf"
+        "country": "USA",
+        "city": "GA",
+        "state": "Valdosta"
       },
-      "username": "asdf"
-    },
-    {
-      "birthday": "2023-10-01",
-      "password": "asdf",
-      "name": "asdf",
-      "location": {
-        "country": "asdf",
-        "city": "asdf",
-        "state": "asdf"
-      },
-      "username": "asdfa"
-    },
-    {
-      "birthday": "2023-10-01",
-      "password": "asdf",
-      "name": "asdf",
-      "location": {
-        "country": "asdf",
-        "city": "asdf",
-        "state": "asdf"
-      },
-      "username": "asdf1"
+      "username": "ADMIN"
     }
   ]
 }
