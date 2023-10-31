@@ -1,8 +1,12 @@
-package application;
+package unit_tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import application.Category;
+import application.Group;
+import application.GroupManager;
 
 class GroupManagerTest {
 
