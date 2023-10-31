@@ -4,6 +4,8 @@ module Software_Project {
 	requires javafx.fxml;
 	requires javafx.base;
 	requires javafx.graphics;
+	requires json.simple;
+	requires com.google.gson;
 	
 	opens application to javafx.graphics, javafx.fxml;
 }
