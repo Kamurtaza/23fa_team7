@@ -1,12 +1,24 @@
-package application;
+package unit_tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-class GroupTest {
+import application.Category;
+import application.Group;
+import application.Post;
 
+class GroupTest {
+	@Test
+	void testAddPost() {
+		Group g = createGroup();
+		Post p = createPost();
+		g.addPost(p);
+		Post expected = createPost();
+		assertEquals(expected, g.getPost(p.getText()));
+	}
+	
 	@Test
 	void testEquals_True() {
 		Group g = createGroup();
@@ -38,11 +50,17 @@ class GroupTest {
 	}
 	
 	/*
-	 * HELPER METHOD
+	 * HELPER METHODS
 	 */
 	
 	public Group createGroup() {
 		Category c = new Category("Mathematics");
 		return new Group("Calculus I", c);
+	}
+	
+	public Post createPost() {
+		Category c = new Category("Mathematics");
+		Group g = new Group("Calculus 1", c);
+		return new Post(g, "I don't know how to do derivatives. Help!");
 	}
 }

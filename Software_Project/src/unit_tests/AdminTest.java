@@ -1,9 +1,11 @@
-package application;
+package unit_tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
+
+import application.Admin;
 
 class AdminTest {
 

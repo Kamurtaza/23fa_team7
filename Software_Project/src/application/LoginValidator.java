@@ -1,6 +1,7 @@
 package application;
 
 import java.io.FileReader;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,8 +13,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class LoginValidator {
-	
-	private static final String USERS = "C:\\Users\\mdami\\git\\Team7New\\23fa_team7\\Software_Project\\json\\users.json";
+
+	private static final String USERS = "C:\\Users\\jacob\\OneDrive\\Desktop\\SE Project\\23fa_team7\\Software_Project\\json\\users.json";
 	private JSONObject users;
 	private List<String> errorMessages = new ArrayList<String>();
 	private JSONObject currentUser;
