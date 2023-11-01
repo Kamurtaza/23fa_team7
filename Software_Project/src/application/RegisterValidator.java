@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class RegisterValidator {
-	private static final String USERS = "C:\\Users\\jacob\\OneDrive\\Desktop\\SE Project\\23fa_team7\\Software_Project\\json\\users.json";
+	private static final String USERS = "json/users.json";
 
 	private boolean userValid;
 	private List<String> errorMessages = new ArrayList<String>();
