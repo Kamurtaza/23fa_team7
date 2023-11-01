@@ -12,16 +12,16 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class LoginValidator {
-	
+
 	private static final String USERS = "C:\\Users\\mdami\\git\\Team7New\\23fa_team7\\Software_Project\\json\\users.json";
 	private JSONObject users;
-	private List<String> errorMessages = new ArrayList<String>();
+	private List<String> errorMessages = new ArrayList<>();
 	private JSONObject currentUser;
-	
+
 	public LoginValidator() {
 		this.users = readJsonFile(USERS);
 	}
-	
+
 	public boolean validateLogin(String username, String password) {
 		errorMessages.clear();
 		if(userExists(username)) {
@@ -39,7 +39,7 @@ public class LoginValidator {
 			return false;
 		}
 	}
-	
+
 	private JSONObject readJsonFile(String filePath) {
 		JSONParser parser = new JSONParser();
 		JSONObject users = null;
@@ -52,9 +52,9 @@ public class LoginValidator {
         }
         return users;
     }
-	
+
 	public boolean userExists(String username) {
-		JSONArray usersArray = (JSONArray)users.get("users");	
+		JSONArray usersArray = (JSONArray)users.get("users");
 		@SuppressWarnings("unchecked")
 		Iterator<JSONObject> iter = usersArray.iterator();
 		while(iter.hasNext()){

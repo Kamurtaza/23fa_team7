@@ -3,15 +3,15 @@ package application;
 public class StackController {
     private StackGui gui;
     private StackManager stackManager;
-    
+
     public StackController(StackGui gui) {
         this.gui = gui;
         this.stackManager = StackPersistence.buildStackManager(gui.inFile);
     }
-    
+
     public void addUser(String id) {
         StackIdStatus stackMessage = StackValidator.isIdValid(id);
-        
+
         if (stackMessage.isValid() && !stackManager.containsStack(id)) {
             addUserToStack(id);
         } else {

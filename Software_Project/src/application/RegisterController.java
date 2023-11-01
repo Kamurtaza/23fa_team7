@@ -13,10 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class RegisterController {
@@ -38,18 +36,18 @@ public class RegisterController {
 	private TextField txtAreaCity;
 //	@FXML
 //	private Text registrationSuccess;
-	
+
 	private RegisterValidator registerValidator = new RegisterValidator();
 	Stage stage;
 	Parent root;
 	Scene scene;
-	
+
 	@FXML
 	Hyperlink linkBack;
 
 	@FXML
 	private void handleRegisterEvent(ActionEvent event) throws Exception {
-		
+
 		String username = txtAreaUsername.getText();
 		String password = txtAreaPassword.getText();
 		String rePassword = txtAreaPasswordConfirm.getText();
@@ -58,7 +56,7 @@ public class RegisterController {
 		String country = txtAreaCountry.getText();
 		String state = txtAreaState.getText();
 		String city = txtAreaCity.getText();
-		
+
 		try {
 			LocalDate birthdate = pickerBirthday.getValue();
 			if(birthdate != null) {
@@ -72,11 +70,11 @@ public class RegisterController {
 			    alert.showAndWait();
 			    return;
 			}
-		
+
 		boolean isValidRegistration = registerValidator.validateRegistration(username, password, rePassword, name, birthday, country, state, city);
-		
+
 		if (isValidRegistration) {
-			
+
 			stage = (Stage) linkBack.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("Login.fxml"));
 //			registrationSuccess.setVisible(true);
@@ -107,12 +105,12 @@ public class RegisterController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@FXML
 	private void handleReturnEvent(ActionEvent event) throws Exception {
 		stage = (Stage) linkBack.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-		
+
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();

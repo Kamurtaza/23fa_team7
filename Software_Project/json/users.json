@@ -10,6 +10,17 @@
         "state": "Valdosta"
       },
       "username": "ADMIN"
+    },
+    {
+      "birthday": "2023-10-01",
+      "password": "asdf",
+      "name": "Miguel",
+      "location": {
+        "country": "USA",
+        "city": "Tift",
+        "state": "Ga"
+      },
+      "username": "mdamian"
     }
   ]
 }

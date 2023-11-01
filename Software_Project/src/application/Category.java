@@ -4,16 +4,16 @@ import java.util.HashMap;
 
 public class Category {
 	private String title;
-	private HashMap<String, Group> groups = new HashMap<String, Group>();
-	
+	private HashMap<String, Group> groups = new HashMap<>();
+
 	public Category(String name) {
 		this.title = name;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
-	
+
 	public boolean addGroup(Group g) {
 		if(!groups.containsKey(g.getTitle())) {
 			groups.put(g.getTitle(), g);
@@ -21,7 +21,7 @@ public class Category {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
 		if(o instanceof Category) {
@@ -32,7 +32,7 @@ public class Category {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public String toString() {
 		String msg = "Category: " + title + ". Groups in this category:\n";
