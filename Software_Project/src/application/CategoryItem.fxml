@@ -33,7 +33,7 @@
                </rowConstraints>
                <children>
                   <Label fx:id="lblNumUsers" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="409.0" text="Number of Users: Lorum Ipsum" GridPane.rowIndex="1" />
-                  <Label fx:id="lblNumPosts" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="404.0" text="Number of Posts: Lorum Ipsum" />
+                  <Label fx:id="lblNumPosts" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="404.0" text="Number of Groups: Lorum Ipsum" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
