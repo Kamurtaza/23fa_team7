@@ -65,7 +65,7 @@ class CategoryManagerTest {
 	}
 	
 	@Test
-	void testGroupsInCategoryList() {
+	void testGroupsInCategoryList_CategoryExists() {
 		Category c = new Category("Mathematics");
 		Group g = new Group("Linear Algebra", c);
 		Group g2 = new Group("Calculus I", c);
@@ -77,6 +77,13 @@ class CategoryManagerTest {
 		expected.add(g2);
 		expected.add(g);
 		assertEquals(expected, cm.groupsInCategoryList(c));
+	}
+	
+	@Test
+	void testGroupsInCategoryList_CategoryNotExists() {
+		Category c = new Category("Art");
+		CategoryManager cm = new CategoryManager();
+		assertEquals(null, cm.groupsInCategoryList(c));
 	}
 	
 	@Test

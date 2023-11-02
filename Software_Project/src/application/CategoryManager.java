@@ -45,10 +45,13 @@ public class CategoryManager {
 	
 	//Returns alphabetical lists of Groups in a Category
 	public ArrayList<Group> groupsInCategoryList(Category c) {
-		ArrayList<Group> dummy = c.getGroups();
-		GroupComparator gc = new GroupComparator();
-		Collections.sort(dummy,gc);
-		return dummy;
+		if(categories.containsValue(c)) {
+			ArrayList<Group> dummy = c.getGroups();
+			GroupComparator gc = new GroupComparator();
+			Collections.sort(dummy,gc);
+			return dummy;
+		}
+		return null;
 	}
 	
 	@Override
