@@ -10,6 +10,17 @@
         "state": "Valdosta"
       },
       "username": "ADMIN"
+    },
+    {
+      "birthday": "2003-02-11",
+      "password": "testing",
+      "name": "Skylar",
+      "location": {
+        "country": "USA",
+        "city": "Valdosta",
+        "state": "Georgia"
+      },
+      "username": "skorn"
     }
   ]
 }
