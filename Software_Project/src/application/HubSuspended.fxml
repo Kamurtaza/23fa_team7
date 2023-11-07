@@ -64,7 +64,8 @@
                         </Hyperlink>
                      </children>
                   </VBox>
-               </children></VBox>
+               </children>
+            </VBox>
             <VBox prefHeight="485.0" prefWidth="375.0" styleClass="rounded" stylesheets="@application.css">
                <children>
                   <HBox prefHeight="121.25" prefWidth="200.0">
@@ -128,7 +129,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="120.0" prefWidth="935.0" styleClass="rounded" stylesheets="@application.css">
                <children>
-                  <Label alignment="BASELINE_CENTER" text="List of Categories">
+                  <Label alignment="BASELINE_CENTER" text="Suspended Users">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -162,7 +163,7 @@
                <children>
                   <HBox prefHeight="54.0" prefWidth="835.0">
                      <children>
-                        <TextField prefHeight="50.0" prefWidth="891.0" promptText="Search for Category" styleClass="search-bar" stylesheets="@application.css" />
+                        <TextField prefHeight="50.0" prefWidth="891.0" promptText="Search for Suspended User" styleClass="search-bar" stylesheets="@application.css" />
                         <Pane prefHeight="200.0" prefWidth="200.0" />
                         <ImageView fitHeight="50.0" fitWidth="50.0">
                            <image>
@@ -179,9 +180,9 @@
                         <ScrollPane prefHeight="582.0" prefWidth="815.0" styleClass="rounded" stylesheets="@application.css">
                            <content>
                               <GridPane>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
                               </GridPane>
                            </content>
                         </ScrollPane>
