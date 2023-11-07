@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Category {
@@ -20,6 +21,14 @@ public class Category {
 			return true;
 		}
 		return false;
+	}
+	
+	public ArrayList<Group> getGroups() {
+		ArrayList<Group> ret = new ArrayList<Group>();
+		for(Group g : groups.values()) {
+			ret.add(g);
+		}
+		return ret;
 	}
 	
 	@Override

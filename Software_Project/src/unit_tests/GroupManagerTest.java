@@ -2,6 +2,8 @@ package unit_tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import application.Category;
@@ -50,6 +52,19 @@ class GroupManagerTest {
 	void testContainsGroup_False() {
 		GroupManager gm = buildGM();
 		assertEquals(false, gm.containsGroup(""));
+	}
+	
+	@Test
+	void testGroupList() {
+		GroupManager gm = buildGM();
+		Category c1 = new Category("Mathematics");
+		Category c2 = new Category("Science");
+		Group g1 = new Group("Calculus 1", c1);
+		Group g2 = new Group("Biology", c2);
+		ArrayList<Group> expected = new ArrayList<Group>();
+		expected.add(g2);
+		expected.add(g1);
+		assertEquals(expected, gm.groupList());
 	}
 	
 	@Test
