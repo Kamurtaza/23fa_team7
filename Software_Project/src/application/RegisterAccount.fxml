@@ -34,7 +34,7 @@
       <TextField fx:id="txtAreaUsername" layoutX="140.0" layoutY="220.0" prefHeight="35.0" prefWidth="211.0" promptText="Username" />
       <PasswordField fx:id="txtAreaPassword" layoutX="140.0" layoutY="265.0" prefHeight="35.0" prefWidth="211.0" promptText="Password" />
       <PasswordField fx:id="txtAreaPasswordConfirm" layoutX="140.0" layoutY="310.0" prefHeight="35.0" prefWidth="211.0" promptText="Retype Password" />
-      <DatePicker fx:id="pickerBirthday" layoutX="380.0" layoutY="175.0" prefHeight="35.0" prefWidth="211.0" promptText="Birthday" />
+      <DatePicker fx:id="pickerBirthday" editable="false" layoutX="380.0" layoutY="175.0" prefHeight="35.0" prefWidth="211.0" promptText="Birthday" />
       <TextField fx:id="txtAreaCountry" layoutX="380.0" layoutY="220.0" prefHeight="35.0" prefWidth="211.0" promptText="Country" />
       <TextField fx:id="txtAreaState" layoutX="380.0" layoutY="265.0" prefHeight="35.0" prefWidth="211.0" promptText="State" />
       <TextField fx:id="txtAreaCity" layoutX="380.0" layoutY="310.0" prefHeight="35.0" prefWidth="211.0" promptText="City" />

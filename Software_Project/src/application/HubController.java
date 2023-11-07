@@ -30,7 +30,6 @@ public class HubController {
 	@FXML
 	private void handleChangeView(ActionEvent event) {
 		try {
-			// String needs to be the name of the requested page
 			String requestedPage = ((Button) event.getSource()).getId();
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(requestedPage + ".fxml"));
