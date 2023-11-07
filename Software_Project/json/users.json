@@ -10,28 +10,6 @@
         "state": "Valdosta"
       },
       "username": "ADMIN"
-    },
-    {
-      "birthday": "2023-10-05",
-      "password": "asdf",
-      "name": "Jacob Carlstrom",
-      "location": {
-        "country": "US",
-        "city": "Albany",
-        "state": "GA"
-      },
-      "username": "jcstorm"
-    },
-    {
-      "birthday": "2023-11-22",
-      "password": "test",
-      "name": "test",
-      "location": {
-        "country": "t",
-        "city": "t",
-        "state": "t"
-      },
-      "username": "test"
     }
   ]
 }
