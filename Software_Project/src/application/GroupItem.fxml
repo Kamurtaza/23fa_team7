@@ -39,7 +39,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </GridPane>
-            <Label fx:id="lblCatTitle" prefHeight="90.0" prefWidth="403.0" text="Group Title">
+            <Label fx:id="lblGroupTitle" prefHeight="90.0" prefWidth="403.0" text="Group Title">
                <font>
                   <Font size="28.0" />
                </font>
@@ -47,12 +47,12 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="lblCatDesc" alignment="TOP_LEFT" prefHeight="69.0" prefWidth="403.0" text="Group Description" GridPane.rowIndex="1">
+            <Label fx:id="lblGroupDesc" alignment="TOP_LEFT" prefHeight="69.0" prefWidth="403.0" text="Group Description" GridPane.rowIndex="1">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <ImageView fx:id="catImg" fitHeight="65.0" fitWidth="65.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+            <ImageView fx:id="groupImg" fitHeight="65.0" fitWidth="65.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                <image>
                   <Image url="@../../Images/ProfileIcon.png" />
                </image>
