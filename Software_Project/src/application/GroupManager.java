@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class GroupManager {
@@ -31,6 +33,17 @@ public class GroupManager {
 			return true;
 		}
 		return false;
+	}
+	
+	//Returns alphabetical list of Groups
+	public ArrayList<Group> groupList() {
+		ArrayList<Group> dummy = new ArrayList<Group>();
+		for(Group g : groups.values()) {
+			dummy.add(g);
+		}
+		GroupComparator gc = new GroupComparator();
+		Collections.sort(dummy,gc);
+		return dummy;
 	}
 	
 	@Override

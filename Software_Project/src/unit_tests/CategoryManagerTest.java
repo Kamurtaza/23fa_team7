@@ -2,6 +2,7 @@ package unit_tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -51,6 +52,41 @@ class CategoryManagerTest {
 	}
 	
 	@Test
+	void testCategoryList() {
+		CategoryManager cm = buildCM_MultipleCategories();
+		Category c = new Category("Mathematics");
+		Group g = new Group("Calculus I", c);
+		c.addGroup(g);
+		Category c2 = new Category("Art");
+		ArrayList<Category> expected = new ArrayList<Category>();
+		expected.add(c2);
+		expected.add(c);
+		assertEquals(expected, cm.categoryList());
+	}
+	
+	@Test
+	void testGroupsInCategoryList_CategoryExists() {
+		Category c = new Category("Mathematics");
+		Group g = new Group("Linear Algebra", c);
+		Group g2 = new Group("Calculus I", c);
+		c.addGroup(g);
+		c.addGroup(g2);
+		CategoryManager cm = new CategoryManager();
+		cm.addCategory(c);
+		ArrayList<Group> expected = new ArrayList<Group>();
+		expected.add(g2);
+		expected.add(g);
+		assertEquals(expected, cm.groupsInCategoryList(c));
+	}
+	
+	@Test
+	void testGroupsInCategoryList_CategoryNotExists() {
+		Category c = new Category("Art");
+		CategoryManager cm = new CategoryManager();
+		assertEquals(null, cm.groupsInCategoryList(c));
+	}
+	
+	@Test
 	void testToString() {
 		CategoryManager cm = buildCM();
 		String expected = "Categories:\nCategory: Mathematics. Groups in this category:\nCalculus I\nLinear Algebra\n\n";
@@ -69,6 +105,17 @@ class CategoryManagerTest {
 		c.addGroup(g);
 		c.addGroup(g2);
 		cm.addCategory(c);
+		return cm;
+	}
+	
+	public CategoryManager buildCM_MultipleCategories() {
+		Category c = new Category("Mathematics");
+		Group g = new Group("Calculus I", c);
+		Category c2 = new Category("Art");
+		CategoryManager cm = new CategoryManager();
+		c.addGroup(g);
+		cm.addCategory(c);
+		cm.addCategory(c2);
 		return cm;
 	}
 }
