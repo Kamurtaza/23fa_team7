@@ -39,16 +39,30 @@ public class LoginController {
 		boolean isLoginValid = loginValidator.validateLogin(username, password);
 
 		if(isLoginValid) {
-			stage = (Stage) btnLogin.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("Hub.fxml"));
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("Login Successful");
-			alert.setHeaderText(null);
-			alert.setContentText("Welcome user: " + username + "\nYou can now add comments and create posts for the world to see!");
-			alert.showAndWait();
+			if("ADMIN".equals(username)) {
+				stage = (Stage) btnLogin.getScene().getWindow();
+				root = FXMLLoader.load(getClass().getResource("AdminHub.fxml"));
+				scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Login Successful");
+				alert.setHeaderText(null);
+				alert.setContentText("Welcome " + username);
+				alert.showAndWait();
+			}
+			else {
+				stage = (Stage) btnLogin.getScene().getWindow();
+				root = FXMLLoader.load(getClass().getResource("Hub.fxml"));
+				scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Login Successful");
+				alert.setHeaderText(null);
+				alert.setContentText("Welcome user: " + username + "\nYou can now add comments and create posts for the world to see!");
+				alert.showAndWait();
+			}
 		}
 		else {
 			List<String> errorMessages = loginValidator.getErrorMessages();

@@ -1,6 +1,7 @@
 package application;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Category {
 	private String title;
@@ -21,7 +22,15 @@ public class Category {
 		}
 		return false;
 	}
-
+	
+	public ArrayList<Group> getGroups() {
+		ArrayList<Group> ret = new ArrayList<Group>();
+		for(Group g : groups.values()) {
+			ret.add(g);
+		}
+		return ret;
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if(o instanceof Category) {

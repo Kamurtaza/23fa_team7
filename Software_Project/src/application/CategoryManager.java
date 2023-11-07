@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class CategoryManager {
@@ -30,6 +32,25 @@ public class CategoryManager {
 		return categories.containsKey(title);
 	}
 	
+	//Returns alphabetical list of Categories
+		public ArrayList<Category> categoryList() {
+			ArrayList<Category> dummy = new ArrayList<Category>();
+			for(Category c : categories.values()) {
+				dummy.add(c);
+			}
+			CategoryComparator cc = new CategoryComparator();
+			Collections.sort(dummy,cc);
+			return dummy;
+		}
+
+		//Returns alphabetical lists of Groups in a Category
+		public ArrayList<Group> groupsInCategoryList(Category c) {
+			ArrayList<Group> dummy = c.getGroups();
+			GroupComparator gc = new GroupComparator();
+			Collections.sort(dummy,gc);
+			return dummy;
+		}
+		
 	@Override
 	public String toString() {
 		String ret = "Categories:\n";

@@ -1,5 +1,6 @@
 package application;
 import java.io.FileReader;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class RegisterValidator {
+	//jason file to hold all our users
 	private static final String USERS = "json/users.json";
 
 	private boolean userValid;
@@ -23,7 +25,7 @@ public class RegisterValidator {
 
 	public RegisterValidator() {
 	}
-
+	//reads json file to use
 	private JSONObject readJsonFile(String filePath) {
         JSONParser parser = new JSONParser();
         JSONObject users = null;
@@ -36,7 +38,7 @@ public class RegisterValidator {
         }
         return users;
     }
-
+	//writes to json file to add new user
 	private void writeToJsonFile(JSONObject users) {
 		try (FileWriter file = new FileWriter(USERS)){
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -66,7 +68,6 @@ public class RegisterValidator {
 			JSONObject user = (JSONObject) userObj;
 			String existUsername = (String) user.get("username");
 			if(existUsername.equals(username)) {
-				System.out.println("Username taken");
 				return false;
 			}
 		}

@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class AdminManager {
 	private HashMap<String, Admin> admins = new HashMap<>();
+	private HashMap<String, Category> categories = new HashMap<>();
 
 	public AdminManager() {}
 
@@ -29,6 +30,8 @@ public class AdminManager {
 	public boolean containsAdmin(String username) {
 		return admins.containsKey(username);
 	}
+	
+	public 
 
 	@Override
 	public String toString() {
