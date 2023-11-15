@@ -1,15 +1,21 @@
 package application;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Post {
 	private Group group;
 	private String text;
+	private LocalDate date;
+	private LocalTime time;
 	private ArrayList<Response> responses = new ArrayList<>();
 	
-	public Post(Group group, String text) {
+	public Post(Group group, String text, LocalDate date, LocalTime time) {
 		this.group = group;
 		this.text = text;
+		this.date = date;
+		this.time = time;
 	}
 	
 	public Group getGroup() {
@@ -20,8 +26,24 @@ public class Post {
 		return text;
 	}
 	
+	public LocalDate getDate() {
+		return date;
+	}
+	
+	public LocalTime getTime() {
+		return time;
+	}
+	
+	public void addResponse(Response r) {
+		responses.add(r);
+	}
+	
 	public Response getResponse(int index) {
-		return responses.get(index);
+		if(index >= 0 && index < responses.size()) {
+			return responses.get(index);
+
+		}
+		return null;
 	}
 	
 	public Response getResponseWithText(String text) {
@@ -33,8 +55,8 @@ public class Post {
 		return null;
 	}
 	
-	public void addResponse(Response r) {
-		responses.add(r);
+	public int getNumResponses() {
+		return responses.size();
 	}
 	
 	@Override
@@ -50,6 +72,7 @@ public class Post {
 	
 	@Override
 	public String toString() {
-		return "Post in group " + group + ":\n" + text;
+		return "Post in group " + group + ":\n" + text
+				+ "\nOn " + date.toString() + " at "+ time.toString();
 	}
 }

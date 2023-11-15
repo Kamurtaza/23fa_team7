@@ -46,6 +46,20 @@ public class GroupManager {
 		return dummy;
 	}
 	
+	//Returns list of Posts in a Group based on date
+	public ArrayList<Post> postList(Group g) {
+		ArrayList<Post> dummy = new ArrayList<Post>();
+		if(containsGroup(g.getTitle())) {
+			for(int i = 0; i < g.getNumPosts(); i++) {
+				dummy.add(g.getPost(i));
+			}
+			PostComparator pc = new PostComparator();
+			Collections.sort(dummy,pc);
+			return dummy;
+		}
+		return null;
+	}
+	
 	@Override
 	public String toString() {
 		String ret = "Groups:\n";

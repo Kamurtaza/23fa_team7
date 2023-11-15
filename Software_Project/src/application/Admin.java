@@ -1,8 +1,6 @@
 package application;
 
 public class Admin {
-	//private String firstName;
-	//private String lastName;
 	private String name;
 	private String username;
 	private String password;
@@ -10,13 +8,6 @@ public class Admin {
 	private String country;
 	private String city;
 	private String state;
-	
-//	public Admin (String firstName, String lastName, String username, String password) {
-//		this.firstName = firstName;
-//		this.lastName = lastName;
-//		this.username = username;
-//		this.password = password;
-//	}
 	
 	public Admin (String name, String username, String password, String birthday, String city, String state, String country) {
 		this.name = name;
@@ -27,15 +18,7 @@ public class Admin {
 		this.city = city;
 		this.state = state;
 	}
-	
-//	public String getFirstName() {
-//		return firstName;
-//	}
-//	
-//	public String getLastName() {
-//		return lastName;
-//	}
-	
+		
 	public String getName() {
 		return name;
 	}
@@ -74,11 +57,6 @@ public class Admin {
 		}
 		return false;
 	}
-	
-//	@Override
-//	public String toString() {
-//		return firstName + " " + lastName + ", " + username;
-//	}
 	
 	@Override
 	public String toString() {

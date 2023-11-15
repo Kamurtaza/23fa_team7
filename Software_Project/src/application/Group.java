@@ -1,9 +1,10 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Group {
-	HashMap <String, Post> posts = new HashMap<String, Post>();
+	ArrayList<Post> posts = new ArrayList<>();
 	private String title;
 	private Category category;
 	
@@ -20,12 +21,28 @@ public class Group {
 		return category;
 	}
 	
-	public Post getPost(String text) {
-		return posts.get(text);
+	public void addPost(Post p) {
+		posts.add(p);
 	}
 	
-	public void addPost(Post p) {
-		posts.put(p.getText(), p);
+	public Post getPost(int index) {
+		if(index >= 0 && index < posts.size()) { 
+			return posts.get(index);
+		}
+		return null;
+	}
+	
+	public Post getPostWithText(String text) {
+		for(Post p : posts) {
+			if(p.getText().equals(text)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
+	public int getNumPosts() {
+		return posts.size();
 	}
 	
 	@Override
