@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="845.0" prefWidth="1310.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="845.0" prefWidth="1310.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HubSuspendedController">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -26,12 +26,12 @@
                      </font>
                   </Label>
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <ImageView fx:id="sortAlpha" fitHeight="75.0" fitWidth="75.0">
+                  <ImageView fx:id="imgSortAlpha" fitHeight="75.0" fitWidth="75.0" onMouseClicked="#sortAlpha">
                      <image>
                         <Image url="@../../Images/SortAlphaAscend.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="sortLike" fitHeight="75.0" fitWidth="75.0">
+                  <ImageView fx:id="imgSortLike" fitHeight="75.0" fitWidth="75.0" onMouseClicked="#sortLikes">
                      <image>
                         <Image url="@../../Images/SortLikeAscend.png" />
                      </image>
@@ -54,9 +54,9 @@
                <children>
                   <HBox prefHeight="54.0" prefWidth="835.0">
                      <children>
-                        <TextField prefHeight="50.0" prefWidth="891.0" promptText="Search for Suspended User" styleClass="search-bar" stylesheets="@application.css" />
+                        <TextField fx:id="txtFieldSearch" prefHeight="50.0" prefWidth="891.0" promptText="Search for Suspended User" styleClass="search-bar" stylesheets="@application.css" />
                         <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                        <ImageView fx:id="imgSearch" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#searchUsers">
                            <image>
                               <Image url="@../../Images/Search.png" />
                            </image>
@@ -68,7 +68,7 @@
                   </HBox>
                   <VBox prefHeight="575.0" prefWidth="835.0" stylesheets="@application.css">
                      <children>
-                        <ScrollPane prefHeight="582.0" prefWidth="815.0" styleClass="rounded" stylesheets="@application.css">
+                        <ScrollPane fx:id="sPaneView" prefHeight="582.0" prefWidth="815.0" styleClass="rounded" stylesheets="@application.css">
                            <content>
                               <GridPane>
                                  <rowConstraints>

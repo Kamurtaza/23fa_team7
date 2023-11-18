@@ -1,53 +1,65 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ArrayList;
 
 public class Category {
-	private String title;
-	private HashMap<String, Group> groups = new HashMap<>();
 
-	public Category(String name) {
-		this.title = name;
+	private String title;
+	private HashMap<String, Group> groups = new HashMap<String, Group>();
+	
+	public Category(String title) {
+		this.title = title;
 	}
 
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public boolean addGroup(Group group) {
+		if (!groups.containsKey(group.getTitle())) {
+			groups.put(group.getTitle(), group);
 
-	public boolean addGroup(Group g) {
-		if(!groups.containsKey(g.getTitle())) {
-			groups.put(g.getTitle(), g);
 			return true;
 		}
 		return false;
 	}
 	
 	public ArrayList<Group> getGroups() {
-		ArrayList<Group> ret = new ArrayList<Group>();
-		for(Group g : groups.values()) {
-			ret.add(g);
+
+		ArrayList<Group> groupList = new ArrayList<Group>();
+		
+		for (Group group : groups.values()) {
+			groupList.add(group);
 		}
-		return ret;
+		
+		return groupList;
 	}
 	
-	@Override
-	public boolean equals(Object o) {
-		if(o instanceof Category) {
-			Category c = (Category)o;
-			if(this.title.equals(c.title)) {
+	public boolean equals(Object obj) {
+		if (obj instanceof Category) {
+			Category category = (Category)obj;
+			if (this.title.equals(category.title)) {
+
 				return true;
 			}
 		}
 		return false;
 	}
 
-	@Override
 	public String toString() {
-		String msg = "Category: " + title + ". Groups in this category:\n";
-		for(Group g : groups.values()) {
-			msg += g.toString() + "\n";
+		String info = "Category: " + title + "\nGroups: ";
+		
+		for (Group group : groups.values()) {
+			info += group.toString() + ", ";
 		}
-		return msg;
+		
+		return info;
 	}
+	
 }

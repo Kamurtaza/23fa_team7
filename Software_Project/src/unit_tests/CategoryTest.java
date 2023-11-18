@@ -3,6 +3,8 @@ package unit_tests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import application.Category;
@@ -24,6 +26,17 @@ class CategoryTest {
 		Group g2 = new Group("Calculus I", c);
 		c.addGroup(g);
 		assertEquals(false, c.addGroup(g2));
+	}
+	
+	@Test
+	void testGetGroups() {
+		Category c = createCategoryWithGroups();
+		ArrayList<Group> expected = new ArrayList<Group>();
+		Group g = new Group("Linear Algebra", c);
+		Group g2 = new Group("Calculus I", c);
+		expected.add(g2);
+		expected.add(g);
+		assertEquals(expected, c.getGroups());
 	}
 	
 	@Test
@@ -55,10 +68,19 @@ class CategoryTest {
 	}
 	
 	/*
-	 * HELPER METHOD
+	 * HELPER METHODS
 	 */
 	
 	public Category createCategory() {
 		return new Category("Mathematics");
+	}
+	
+	public Category createCategoryWithGroups() {
+		Category c = new Category("Mathematics");
+		Group g = new Group("Linear Algebra", c);
+		c.addGroup(g);
+		Group g2 = new Group("Calculus I", c);
+		c.addGroup(g2);
+		return c;
 	}
 }

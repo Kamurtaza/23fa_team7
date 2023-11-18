@@ -1,35 +1,77 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+
 public class Group {
+	
 	private String title;
 	private Category category;
-
-	public Group(String name, Category category) {
-		this.title = name;
+	HashMap<String, Post> posts = new HashMap<String, Post>();
+	
+	public Group(String title, Category category) {
+		this.title = title;
 		this.category = category;
 	}
 
 	public String getTitle() {
-		return title;
+		return this.title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public Category getCategory() {
-		return category;
+		return this.category;
 	}
+	
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	
+	public Post getPost(String title) {
+		return posts.get(title);
+	}
+	
+	public boolean addPost(Post post) {
+		if (!posts.containsKey(post.getTitle())) {
+			posts.put(post.getTitle(), post);
+			return true;
+		}
+		return false;
+	}
+	
+	public ArrayList<Post> getPosts() {
+		ArrayList<Post> postList = new ArrayList<Post>();
+		
+		for (Post post : posts.values()) {
+			postList.add(post);
+		}
+		
+		return postList;
+	}
+	
+	public boolean equals(Object obj) {
+		if (obj instanceof Group) {
+			Group group = (Group)obj;
+			if (this.title.equals(group.title)) {
 
-	@Override
-	public boolean equals(Object o) {
-		if(o instanceof Group) {
-			Group g = (Group)o;
-			if(this.title.equals(g.title)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	@Override
 	public String toString() {
-		return title;
+		String info = "Group: " + title + "\nPosts: ";
+		
+		for (Post post : posts.values()) {
+			info += post.toString() + ", ";
+		}
+		
+		return info;
 	}
+	
 }

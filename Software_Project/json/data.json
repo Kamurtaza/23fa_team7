@@ -1,0 +1,73 @@
+{
+  "responseResponses" : [ {
+    "parentPost" : "Predators are awesome!",
+    "text" : "Yeah but for $20 though? It should've been base game.",
+    "parentResponse" : "The royalty DLC added the ideology system and additional quests, worst take by far"
+  } ],
+  
+  "groups" : [ {
+    "parentCategory" : "Cooking",
+    "title" : "BBQ"
+  }, {
+    "parentCategory" : "Sports",
+    "title" : "Hockey"
+  }, {
+    "parentCategory" : "Video Games",
+    "title" : "Rimworld"
+  }, {
+    "parentCategory" : "Sports",
+    "title" : "Football"
+  } ],
+  
+  "responses" : [ {
+    "parentPost" : "Predators are awesome!",
+    "text" : "Are they really that cool though?"
+  }, {
+    "parentPost" : "The Royalty DLC for Rimworld sucks...",
+    "text" : "The royalty DLC added the ideology system and additional quests, worst take by far"
+  } ],
+  
+  "categories" : [ "Cooking", "Video Games", "Sports" ],
+  "posts" : [ {
+    "parentGroup" : "Hockey",
+    "text" : "The Predators are such a cool hockey team! I can't wait to see them play next Saturday!",
+    "title" : "Predators are awesome!"
+  }, {
+    "parentGroup" : "BBQ",
+    "text" : "I am tired of being told otherwise",
+    "title" : "Chicken Breasts > Chicken Legs"
+  }, {
+    "parentGroup" : "Rimworld",
+    "text" : "Is is just me or does this DLC just blow altogether?",
+    "title" : "The Royalty DLC for Rimworld sucks..."
+  } ],
+  
+  "users" : [ {
+    "birthday" : "2003-02-11",
+    "country" : "United States of America",
+    "password" : "SlayTheSpire900@@@",
+    "role" : "USER",
+    "city" : "Valdosta",
+    "name" : "Skylar Korn",
+    "state" : "Georgia",
+    "username" : "DoubleKing"
+  }, {
+    "birthday" : "2023-11-08",
+    "country" : "a",
+    "password" : "a",
+    "role" : "USER",
+    "city" : "a",
+    "name" : "a",
+    "state" : "a",
+    "username" : "a"
+  }, {
+    "birthday" : "2003-08-02",
+    "country" : "United States of America",
+    "password" : "testing",
+    "role" : "ADMIN",
+    "city" : "Valdosta",
+    "name" : "Danny Phantom",
+    "state" : "Georgia",
+    "username" : "admin"
+  } ]
+}

@@ -1,15 +1,33 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Post {
-	private Group group;
-	private String text;
-	private ArrayList<Response> responses = new ArrayList<>();
-	private boolean isFlagged;
 	
-	public Post(Group group, String text) {
+	private String title, text;
+	private Group group;
+	HashMap<String, Response> responses = new HashMap<String, Response>();
+	
+	public Post(String title, String text, Group group) {
+		this.title = title;
+		this.text = text;
 		this.group = group;
+	}
+	
+	public String getTitle() {
+		return this.title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public String getText() {
+		return this.text;
+	}
+	
+	public void setText(String text) {
 		this.text = text;
 	}
 	
@@ -18,43 +36,53 @@ public class Post {
 	}
 	
 	public Group getGroup() {
-		return group;
+		return this.group;
 	}
 	
-	public String getText() {
-		return text;
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 	
-	public Response getResponse(int index) {
-		return responses.get(index);
+	public Response getResponse(String text) {
+		return responses.get(text);
 	}
 	
-	public Response getResponseWithText(String text) {
-		for(Response r: responses) {
-			if(r.getText().equals(text)) {
-				return r;
-			}
+	public boolean addResponse(Response response) {
+		if (!responses.containsKey(response.getText())) {
+			responses.put(response.getText(), response);
+			return true;
 		}
-		return null;
+		return false;
 	}
 	
-	public void addResponse(Response r) {
-		responses.add(r);
+	public ArrayList<Response> getResponses() {
+		ArrayList<Response> responseList = new ArrayList<Response>();
+		
+		for (Response response : responses.values()) {
+			responseList.add(response);
+		}
+		
+		return responseList;
 	}
 	
-	@Override
-	public boolean equals(Object o) {
-		if(o instanceof Post) {
-			Post p = (Post)o;
-			if(this.text.equals(p.text)) {
+	public boolean equals(Object obj) {
+		if (obj instanceof Post) {
+			Post post = (Post)obj;
+			if (this.title.equals(post.title)) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	@Override
 	public String toString() {
-		return "Post in group " + group + ":\n" + text;
+		String info = "Post: " + title + "\nResponses: ";
+		
+		for (Response response : responses.values()) {
+			info += response.toString() + ", ";
+		}
+		
+		return info;
 	}
+	
 }

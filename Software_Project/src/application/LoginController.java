@@ -1,14 +1,10 @@
 package application;
 
-import java.util.List;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
@@ -28,53 +24,35 @@ public class LoginController {
 	@FXML
 	Hyperlink linkRegister, linkVisitor;
 	@FXML
-	Button btnLogin;
-	private LoginValidator loginValidator = new LoginValidator();
+
+	private Button btnLogin;
+	
+	// COME BACK TO ME
+	// Needs to show an error label in the event the login is invalid
 
 	@FXML
 	private void handleLoginEvent(ActionEvent event) throws Exception {
 		String username = txtAreaUsername.getText();
 		String password = txtAreaPassword.getText();
-
-		boolean isLoginValid = loginValidator.validateLogin(username, password);
-
-		if(isLoginValid) {
-			if("ADMIN".equals(username)) {
-				stage = (Stage) btnLogin.getScene().getWindow();
-				root = FXMLLoader.load(getClass().getResource("AdminHub.fxml"));
-				scene = new Scene(root);
-				stage.setScene(scene);
-				stage.show();
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Login Successful");
-				alert.setHeaderText(null);
-				alert.setContentText("Welcome " + username);
-				alert.showAndWait();
+		
+		if(Validator.isLoginValid(username, password)) {
+			Persistence persistence = new Persistence();
+			persistence.loadData();
+			UserManager userManager = persistence.getUserManager();
+			
+			for (User user : userManager.getHashMap().values()) {
+				System.out.println(user.toString());
 			}
-			else {
-				stage = (Stage) btnLogin.getScene().getWindow();
-				root = FXMLLoader.load(getClass().getResource("Hub.fxml"));
-				scene = new Scene(root);
-				stage.setScene(scene);
-				stage.show();
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Login Successful");
-				alert.setHeaderText(null);
-				alert.setContentText("Welcome user: " + username + "\nYou can now add comments and create posts for the world to see!");
-				alert.showAndWait();
-			}
+			
+			stage = (Stage) btnLogin.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("Hub.fxml"));
+			
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
 		}
 		else {
-			List<String> errorMessages = loginValidator.getErrorMessages();
-			StringBuilder errorMessageBuilder = new StringBuilder();
-			for (String error : errorMessages) {
-				errorMessageBuilder.append(error).append("\n");
-			}
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error");
-			alert.setHeaderText(null);
-			alert.setContentText(errorMessageBuilder.toString());
-			alert.showAndWait();
+			txtAreaPassword.setText(null);
 		}
 	}
 
@@ -87,6 +65,9 @@ public class LoginController {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	// COME BACK TO ME
+	// Currently lets a NULL user get by with no active user being set.
 
 	@FXML
 	private void handleVisitorEvent(ActionEvent event) throws Exception {
