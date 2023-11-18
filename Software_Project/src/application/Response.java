@@ -1,35 +1,80 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Response {
-	private Post post;
-	private String text;
 	
-	public Response(Post post, String text) {
+	private String text;
+	private Post post;
+	HashMap<String, Response> responses = new HashMap<String, Response>();
+	private Response parentResponse;
+	
+	public Response(String text, Post post) {
+		this.text = text;
 		this.post = post;
+	}
+	
+	public String getText() {
+		return this.text;
+	}
+	
+	public void setText(String text) {
 		this.text = text;
 	}
 	
 	public Post getPost() {
-		return post;
+		return this.post;
 	}
 	
-	public String getText() {
-		return text;
+	public void setPost(Post post) {
+		this.post = post;
 	}
 	
-	@Override
-	public boolean equals(Object o) {
-		if(o instanceof Response) {
-			Response r = (Response)o;
-			if(this.text.equals(r.text)) {
+	public boolean addResponse(Response response) {
+		if (!responses.containsKey(response.getText())) {
+			responses.put(response.getText(), response);
+			return true;
+		}
+		return false;
+	}
+	
+	public ArrayList<Response> getResponses() {
+		ArrayList<Response> responseList = new ArrayList<Response>();
+		
+		for (Response response : responses.values()) {
+			responseList.add(response);
+		}
+		
+		return responseList;
+	}
+	
+	public Response getParentResponse() {
+		return this.parentResponse;
+	}
+	
+	public void setParentResponse (Response parentResponse) {
+		this.parentResponse = parentResponse;
+	}
+	
+	public boolean equals(Object obj) {
+		if (obj instanceof Response) {
+			Response response = (Response)obj;
+			if (this.text.equals(response.text)) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	@Override
 	public String toString() {
-		return "Response to post \"" + post.getText() + "\"\n\"" + text + "\"";
+		String info = "Response: " + text + "\nResponses: ";
+		
+		for (Response response : responses.values()) {
+			info += response.toString() + ", ";
+		}
+		
+		return info;
 	}
+	
 }

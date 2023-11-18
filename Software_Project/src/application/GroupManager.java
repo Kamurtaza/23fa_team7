@@ -1,57 +1,64 @@
 package application;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class GroupManager {
-	private HashMap<String,Group> groups = new HashMap<String,Group>();
+
+	// String (Group Name)
+	private HashMap<String, Group> groups = new HashMap<String, Group>();
 	
-	public GroupManager() {}
+	public GroupManager() { }
 	
-	public void addGroup(Group g) {
-		groups.put(g.getTitle(), g);
+	public boolean addGroup(Group group) {
+		if (!groups.containsKey(group.getTitle())) {
+			groups.put(group.getTitle(), group);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean removeGroup(Group group) {
+		if (groups.containsKey(group.getTitle())) {
+			groups.remove(group.getTitle());
+			return true;
+		}
+		return false;
 	}
 	
 	public int getNumGroups() {
 		return groups.size();
 	}
 	
-	public Group getGroup(String title) {
-		if(groups.containsKey(title)) {
-			return groups.get(title);
+	public Group getGroup(String groupName) {
+		if (groups.containsKey(groupName)) {
+			return groups.get(groupName);
 		}
 		return null;
+	}
+	
+	public boolean hasGroup(String groupName) {
+		if (groups.containsKey(groupName)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public HashMap<String, Group> getHashMap() {
+		return this.groups;
 	}
 	
 	public void clear() {
 		groups.clear();
 	}
 	
-	public boolean containsGroup(String title) {
-		if(groups.containsKey(title)) {
-			return true;
-		}
-		return false;
-	}
-	
-	//Returns alphabetical list of Groups
-	public ArrayList<Group> groupList() {
-		ArrayList<Group> dummy = new ArrayList<Group>();
-		for(Group g : groups.values()) {
-			dummy.add(g);
-		}
-		GroupComparator gc = new GroupComparator();
-		Collections.sort(dummy,gc);
-		return dummy;
-	}
-	
-	@Override
 	public String toString() {
-		String ret = "Groups:\n";
-		for(Group g : groups.values()) {
-			ret += g + "\n";
+		String info = "Groups: ";
+		
+		for (Group group : groups.values()) {
+			info += group.getTitle() + ", ";
 		}
-		return ret;
+		
+		info += "\n";
+		return info;
 	}
 }
