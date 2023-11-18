@@ -14,7 +14,7 @@ public class Group {
 		this.title = title;
 		this.category = category;
 	}
-	
+
 	public String getTitle() {
 		return this.title;
 	}
@@ -22,7 +22,7 @@ public class Group {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public Category getCategory() {
 		return this.category;
 	}
@@ -57,12 +57,13 @@ public class Group {
 		if (obj instanceof Group) {
 			Group group = (Group)obj;
 			if (this.title.equals(group.title)) {
+
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	public String toString() {
 		String info = "Group: " + title + "\nPosts: ";
 		

@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class CategoryManager {
@@ -51,6 +53,7 @@ public class CategoryManager {
 		categories.clear();
 	}
 	
+
 	public String toString() {
 		String info = "Categories: ";
 		

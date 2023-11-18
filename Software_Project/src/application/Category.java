@@ -2,6 +2,7 @@ package application;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Category {
 
@@ -11,7 +12,7 @@ public class Category {
 	public Category(String title) {
 		this.title = title;
 	}
-	
+
 	public String getTitle() {
 		return this.title;
 	}
@@ -23,12 +24,14 @@ public class Category {
 	public boolean addGroup(Group group) {
 		if (!groups.containsKey(group.getTitle())) {
 			groups.put(group.getTitle(), group);
+
 			return true;
 		}
 		return false;
 	}
 	
 	public ArrayList<Group> getGroups() {
+
 		ArrayList<Group> groupList = new ArrayList<Group>();
 		
 		for (Group group : groups.values()) {
@@ -42,12 +45,13 @@ public class Category {
 		if (obj instanceof Category) {
 			Category category = (Category)obj;
 			if (this.title.equals(category.title)) {
+
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	public String toString() {
 		String info = "Category: " + title + "\nGroups: ";
 		

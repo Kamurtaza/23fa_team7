@@ -31,6 +31,10 @@ public class Post {
 		this.text = text;
 	}
 	
+	public boolean getFlaggedStatus() {
+		return isFlagged;
+	}
+	
 	public Group getGroup() {
 		return this.group;
 	}

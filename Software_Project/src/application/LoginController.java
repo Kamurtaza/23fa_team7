@@ -16,7 +16,7 @@ public class LoginController {
 	Stage stage;
 	Parent root;
 	Scene scene;
-	
+
 	@FXML
 	private TextField txtAreaUsername;
 	@FXML
@@ -24,10 +24,12 @@ public class LoginController {
 	@FXML
 	Hyperlink linkRegister, linkVisitor;
 	@FXML
+
 	private Button btnLogin;
 	
 	// COME BACK TO ME
 	// Needs to show an error label in the event the login is invalid
+
 	@FXML
 	private void handleLoginEvent(ActionEvent event) throws Exception {
 		String username = txtAreaUsername.getText();
@@ -53,12 +55,12 @@ public class LoginController {
 			txtAreaPassword.setText(null);
 		}
 	}
-	
+
 	@FXML
 	private void handleRegisterEvent(ActionEvent event) throws Exception {
 		stage = (Stage) linkRegister.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("RegisterAccount.fxml"));
-		
+
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
@@ -66,14 +68,15 @@ public class LoginController {
 	
 	// COME BACK TO ME
 	// Currently lets a NULL user get by with no active user being set.
+
 	@FXML
 	private void handleVisitorEvent(ActionEvent event) throws Exception {
 		stage = (Stage) linkVisitor.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("Hub.fxml"));
-		
+
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 }

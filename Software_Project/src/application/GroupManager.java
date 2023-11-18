@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class GroupManager {
@@ -42,7 +44,7 @@ public class GroupManager {
 		}
 		return false;
 	}
-	
+
 	public HashMap<String, Group> getHashMap() {
 		return this.groups;
 	}
