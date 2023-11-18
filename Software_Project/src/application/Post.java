@@ -6,10 +6,15 @@ public class Post {
 	private Group group;
 	private String text;
 	private ArrayList<Response> responses = new ArrayList<>();
+	private boolean isFlagged;
 	
 	public Post(Group group, String text) {
 		this.group = group;
 		this.text = text;
+	}
+	
+	public boolean getFlaggedStatus() {
+		return isFlagged;
 	}
 	
 	public Group getGroup() {
