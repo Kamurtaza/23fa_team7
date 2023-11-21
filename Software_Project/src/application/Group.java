@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 
 public class Group {
-	
+	ArrayList<Post> posts = new ArrayList<>();
 	private String title;
 	private Category category;
 	HashMap<String, Post> posts = new HashMap<String, Post>();

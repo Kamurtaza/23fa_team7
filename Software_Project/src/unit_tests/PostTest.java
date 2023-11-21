@@ -2,6 +2,9 @@ package unit_tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.junit.jupiter.api.Test;
 
 import application.Category;
@@ -13,9 +16,39 @@ class PostTest {
 	@Test
 	void testAddResponse() {
 		Post p = createPost();
-		Response r = new Response(p, "I can help");
+		Response r = createResponse();
 		p.addResponse(r);
-		assertEquals(r, p.getResponseWithText(r.getText()));
+		assertEquals(1, p.getNumResponses());
+	}
+	
+	@Test
+	void testGetResponse_Success() {
+		Post p = createPostWithResponse();
+		Response expected = createResponse();
+		assertEquals(expected, p.getResponse(0));
+	}
+	
+	@Test
+	void testGetResponse_Failure() {
+		Post p = createPostWithResponse();
+		assertNull(p.getResponse(-1));
+		assertNull(p.getResponse(1));
+	}
+	
+	@Test
+	void testGetResponseWithText_Success() {
+		Post p = createPostWithResponse();
+		Category c = new Category("Mathematics");
+		Group g = new Group("Calculus 1", c);
+		Post p2 = new Post(g, "I don't know how to do derivatives. Help!", LocalDate.now(), LocalTime.now());
+		Response expected =  new Response(p, "I can help!", LocalDate.now(),LocalTime.now());
+		assertEquals(expected, p.getResponseWithText("I can help!"));
+	}
+	
+	@Test
+	void testGetResponseWithText_Failure() {
+		Post p = createPostWithResponse();
+		assertNull(p.getResponseWithText(""));
 	}
 	
 	@Test
@@ -23,7 +56,9 @@ class PostTest {
 		Post p = createPost();
 		Category c = new Category("Mathematics");
 		Group g = new Group("Calculus 1", c);
-		Post p2 = new Post(g, "I don't know how to do derivatives. Help!");
+		LocalDate date = LocalDate.now();
+		LocalTime time = LocalTime.now();
+		Post p2 = new Post(g, "I don't know how to do derivatives. Help!", date, time);
 		assertEquals(p,p2);
 	}
 	
@@ -32,7 +67,9 @@ class PostTest {
 		Post p = createPost();
 		Category c = new Category("Mathematics");
 		Group g = new Group("Calculus 1", c);
-		Post p2 = new Post(g, "I don't know how to do integrals. Help!");
+		LocalDate date = LocalDate.now();
+		LocalTime time = LocalTime.now();
+		Post p2 = new Post(g, "I don't know how to do integrals. Help!", date, time);
 		assertNotEquals(p,p2);
 	}
 	
@@ -46,7 +83,8 @@ class PostTest {
 	@Test
 	void testToString() {
 		Post p = createPost();
-		String expected = "Post in group Calculus 1:\nI don't know how to do derivatives. Help!";
+		String expected = "Post in group Calculus 1:\nI don't know how to do derivatives. Help!\nOn "
+				+ p.getDate() + " at " + p.getTime();
 		assertEquals(expected, p.toString());
 	}
 
@@ -57,6 +95,24 @@ class PostTest {
 	public Post createPost() {
 		Category c = new Category("Mathematics");
 		Group g = new Group("Calculus 1", c);
-		return new Post(g, "I don't know how to do derivatives. Help!");
+		LocalDate date = LocalDate.now();
+		LocalTime time = LocalTime.now();
+		return new Post(g, "I don't know how to do derivatives. Help!", date, time);
+	}
+	
+	public Response createResponse() {
+		Category c = new Category("Mathematics");
+		Group g = new Group("Calculus 1", c);
+		Post p = new Post(g, "I don't know how to do derivatives. Help!", LocalDate.now(), LocalTime.now());
+		return new Response(p, "I can help!", LocalDate.now(),LocalTime.now());
+	}
+	
+	public Post createPostWithResponse() {
+		Category c = new Category("Mathematics");
+		Group g = new Group("Calculus 1", c);
+		Post p = new Post(g, "I don't know how to do derivatives. Help!", LocalDate.now(), LocalTime.now());
+		Response r =  new Response(p, "I can help!", LocalDate.now(),LocalTime.now());
+		p.addResponse(r);
+		return p;
 	}
 }

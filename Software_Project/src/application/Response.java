@@ -2,6 +2,8 @@ package application;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Response {
 	
@@ -12,6 +14,11 @@ public class Response {
 	
 	public Response(String text, Post post) {
 		this.text = text;
+  }
+	private LocalDate date;
+	private LocalTime time;
+	
+	public Response(Post post, String text, LocalDate date, LocalTime time) {
 		this.post = post;
 	}
 	
@@ -21,6 +28,8 @@ public class Response {
 	
 	public void setText(String text) {
 		this.text = text;
+		this.date = date;
+		this.time = time;
 	}
 	
 	public Post getPost() {
@@ -30,7 +39,7 @@ public class Response {
 	public void setPost(Post post) {
 		this.post = post;
 	}
-	
+
 	public boolean addResponse(Response response) {
 		if (!responses.containsKey(response.getText())) {
 			responses.put(response.getText(), response);
@@ -56,11 +65,20 @@ public class Response {
 	public void setParentResponse (Response parentResponse) {
 		this.parentResponse = parentResponse;
 	}
+
+	public LocalDate getDate() {
+		return date;
+	}
 	
-	public boolean equals(Object obj) {
-		if (obj instanceof Response) {
-			Response response = (Response)obj;
-			if (this.text.equals(response.text)) {
+	public LocalTime getTime() {
+		return time;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Response) {
+			Response r = (Response)o;
+			if(this.text.equals(r.text)) {
 				return true;
 			}
 		}
