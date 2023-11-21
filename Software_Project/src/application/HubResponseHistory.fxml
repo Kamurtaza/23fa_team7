@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="845.0" prefWidth="1310.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="120.0" prefWidth="935.0" styleClass="rounded" stylesheets="@application.css">
+               <children>
+                  <Label alignment="BASELINE_CENTER" text="Response History">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <ImageView fx:id="sortAlpha" fitHeight="75.0" fitWidth="75.0">
+                     <image>
+                        <Image url="@../../Images/SortAlphaAscend.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="sortLike" fitHeight="75.0" fitWidth="75.0">
+                     <image>
+                        <Image url="@../../Images/SortLikeAscend.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox prefHeight="713.0" prefWidth="935.0" styleClass="rounded" stylesheets="@application.css">
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+               <children>
+                  <HBox prefHeight="54.0" prefWidth="835.0">
+                     <children>
+                        <TextField prefHeight="50.0" prefWidth="891.0" promptText="Search for Response" styleClass="search-bar" stylesheets="@application.css" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../../Images/Search.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <VBox prefHeight="575.0" prefWidth="835.0" stylesheets="@application.css">
+                     <children>
+                        <ScrollPane prefHeight="582.0" prefWidth="815.0" styleClass="rounded" stylesheets="@application.css">
+                           <content>
+                              <GridPane>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </VBox>
+   </center>
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+</BorderPane>
