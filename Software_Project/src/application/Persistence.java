@@ -184,7 +184,10 @@ public class Persistence {
 		String title = (String)obj.get("title");
 		String text = (String)obj.get("text");
 		String parentGroup = (String)obj.get("parentGroup");
-		Post post = new Post(title, text, groupManager.getGroup(parentGroup));
+		String isFlaggedString = (String)obj.get("isFlagged");
+		boolean isFlagged = Boolean.parseBoolean(isFlaggedString);
+
+		Post post = new Post(title, text, groupManager.getGroup(parentGroup), isFlagged);
 		return post;
 	}
 	

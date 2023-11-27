@@ -7,12 +7,21 @@ public class Post {
 	
 	private String title, text;
 	private Group group;
+	private boolean isFlagged;
 	HashMap<String, Response> responses = new HashMap<String, Response>();
+	
+	public Post(String title, String text, Group group, boolean isFlagged) {
+		this.title = title;
+		this.text = text;
+		this.group = group;
+		this.isFlagged = isFlagged;
+	}
 	
 	public Post(String title, String text, Group group) {
 		this.title = title;
 		this.text = text;
 		this.group = group;
+		this.isFlagged = false;
 	}
 	
 	public String getTitle() {
@@ -31,9 +40,6 @@ public class Post {
 		this.text = text;
 	}
 	
-	public boolean getFlaggedStatus() {
-		return isFlagged;
-	}
 	
 	public Group getGroup() {
 		return this.group;
@@ -83,6 +89,18 @@ public class Post {
 		}
 		
 		return info;
+	}
+	
+	public void setFlag() {
+		isFlagged = true;
+	}
+	
+	public void removeFlag() {
+		isFlagged = false;
+	}
+
+	public boolean isFlagged() {
+		return isFlagged;
 	}
 	
 }

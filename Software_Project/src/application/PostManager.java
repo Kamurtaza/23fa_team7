@@ -1,6 +1,7 @@
 package application;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class PostManager {
 
@@ -8,6 +9,14 @@ public class PostManager {
 	private HashMap<String, Post> posts = new HashMap<String, Post>();
 	
 	public PostManager() { }
+	
+	public void flagPost(Post post) {
+		post.setFlag();
+	}
+	
+	public void removeFlag(Post post) {
+		post.removeFlag();	
+	}
 	
 	public boolean addPost(Post post) {
 		if (!posts.containsKey(post.getTitle())) {
@@ -49,6 +58,18 @@ public class PostManager {
 	
 	public void clear() {
 		posts.clear();
+	}
+	
+	public HashMap<String, Post> getFlaggedPosts(){
+		HashMap<String, Post> flaggedPosts= new HashMap<>();
+		for (Map.Entry<String, Post> entry : posts.entrySet()) {
+	        String postId = entry.getKey();
+	        Post post = entry.getValue();
+	        if(post.isFlagged()) {
+				flaggedPosts.put(postId, post);
+			}
+		}
+		return flaggedPosts;
 	}
 	
 	public String toString() {

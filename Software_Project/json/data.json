@@ -24,14 +24,16 @@
     "text" : "Are they really that cool though?"
   }, {
     "parentPost" : "The Royalty DLC for Rimworld sucks...",
-    "text" : "The royalty DLC added the ideology system and additional quests, worst take by far"
+    "text" : "The royalty DLC added the ideology system and additional quests, worst take by far",
+    "isFlagged" : "True"
   } ],
   
   "categories" : [ "Cooking", "Video Games", "Sports" ],
   "posts" : [ {
     "parentGroup" : "Hockey",
     "text" : "The Predators are such a cool hockey team! I can't wait to see them play next Saturday!",
-    "title" : "Predators are awesome!"
+    "title" : "Predators are awesome!",
+    "isFlagged" : "True"
   }, {
     "parentGroup" : "BBQ",
     "text" : "I am tired of being told otherwise",
