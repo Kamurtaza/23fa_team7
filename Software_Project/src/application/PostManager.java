@@ -15,7 +15,7 @@ public class PostManager {
 	}
 	
 	public void removeFlag(Post post) {
-		post.removeFlag();	
+		post.removeFlag();
 	}
 	
 	public boolean addPost(Post post) {
@@ -70,6 +70,16 @@ public class PostManager {
 			}
 		}
 		return flaggedPosts;
+	}
+	
+	public HashMap<String, Post> getAllPosts(){
+		HashMap<String, Post> allPosts= new HashMap<>();
+		for (Map.Entry<String, Post> entry : posts.entrySet()) {
+	        String postId = entry.getKey();
+	        Post post = entry.getValue();
+	        allPosts.put(postId, post);
+		}
+		return allPosts;
 	}
 	
 	public String toString() {

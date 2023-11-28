@@ -8,6 +8,7 @@ public class Post {
 	private String title, text;
 	private Group group;
 	private boolean isFlagged;
+	private String flagged;
 	HashMap<String, Response> responses = new HashMap<String, Response>();
 	
 	public Post(String title, String text, Group group, boolean isFlagged) {

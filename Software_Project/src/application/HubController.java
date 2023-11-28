@@ -3,7 +3,7 @@ package application;
 import java.util.HashMap;
 
 import javafx.event.ActionEvent;
-
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -48,6 +48,36 @@ public class HubController {
     		System.out.println(clickedButton.getId());
     		switch (clickedButton.getId()) {
     		
+    		case"HubPostHistory":
+    			if (pM != null) {
+    				HashMap<String,Post> allPosts = pM.getAllPosts();
+    				
+    				VBox allPostsBox = new VBox();
+    				allPostsBox.setSpacing(10);
+    				
+    				for (Post post : allPosts.values()) {
+    					String title = post.getTitle();
+    					String text = post.getText();
+    				
+    				Label titleLabel = new Label("Title: " + title);
+    				Label textLabel = new Label("Text: " + text);
+    				Button addFlagButton = new Button("Flag Post");
+    				
+    				addFlagButton.setOnAction(e -> {
+    					pM.flagPost(post);
+    					p.updatePostToJSON(post);
+    				});
+    				
+    				VBox postBox = new VBox(titleLabel, textLabel, addFlagButton);
+    				postBox.setSpacing(5);
+    				allPostsBox.getChildren().add(postBox);
+    				}
+    				mainView.getChildren().clear();
+    				mainView.getChildren().add(allPostsBox);	
+    			}
+    			break;
+    			
+    		
     		case "HubFlaggedPosts":
     			System.out.println("We are in case Hub Flagged Posts");
     			if (pM != null) {
@@ -59,15 +89,20 @@ public class HubController {
     				flaggedPostsBox.setSpacing(10);
     				
     				for(Post post : flaggedPosts.values()) {
-    					if(post.isFlagged()) {
-    						String title = post.getTitle();
-    						String text = post.getText();
-    						
-    						Label titleLabel = new Label("Title: " + title);
-    						Label textLabel = new Label("Text: " + text);
-    						    						
-    						flaggedPostsBox.getChildren().addAll(titleLabel, textLabel);
-    					}
+    					String title = post.getTitle();
+    					String text = post.getText();
+    					
+    					Label titleLabel = new Label("Title: " + title);
+    					Label textLabel = new Label("Text: " + text);
+    					Button removeFlagButton = new Button("Remove Flag");
+    					
+    					removeFlagButton.setOnAction(e ->{
+    						pM.removeFlag(post);
+    						p.updatePostToJSON(post);
+    						flaggedPostsBox.getChildren().removeAll(titleLabel, textLabel, removeFlagButton);
+    					});
+    					
+    					flaggedPostsBox.getChildren().addAll(titleLabel, textLabel, removeFlagButton);
     				}
     				mainView.getChildren().clear();
     				
