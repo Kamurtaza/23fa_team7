@@ -1,5 +1,7 @@
 package application;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,11 +10,16 @@ public class Post {
 	private String title, text;
 	private Group group;
 	HashMap<String, Response> responses = new HashMap<String, Response>();
+	private LocalDate date;
+	private LocalTime time;
+	private Boolean flagged;
 	
-	public Post(String title, String text, Group group) {
+	public Post(String title, String text, Group group, LocalDate date, LocalTime time) {
 		this.title = title;
 		this.text = text;
 		this.group = group;
+		this.date = date;
+		this.time = time;
 	}
 	
 	public String getTitle() {
@@ -37,6 +44,30 @@ public class Post {
 	
 	public void setGroup(Group group) {
 		this.group = group;
+	}
+	
+	public LocalDate getDate() {
+		return this.date;
+	}
+	
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+	
+	public LocalTime getTime() {
+		return this.time;
+	}
+	
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
+	
+	public Boolean getFlagged() {
+		return this.flagged;
+	}
+	
+	public void setFlagged(Boolean flag) {
+		this.flagged = flag;
 	}
 	
 	public Response getResponse(String text) {

@@ -47,6 +47,8 @@ public class GroupManager {
 		return this.groups;
 	}
 	
+	// Managers need to be able to return hashmaps in alphabetical order
+	
 	public void clear() {
 		groups.clear();
 	}
