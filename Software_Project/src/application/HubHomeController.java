@@ -3,17 +3,29 @@ package application;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
-public class HubHomeController {
+public class HubHomeController implements Initializable {
 	
 	private Persistence persistence = new Persistence();
 	private CategoryManager categoryManager = new CategoryManager();
 	private GroupManager groupManager = new GroupManager();
 	private PostManager postManager = new PostManager();
 	private ResponseManager responseManager = new ResponseManager();
+	
+	private Category selectedCategory;
+	private Group selectedGroup;
+	private Post selectedPost;
 
 	// First show categories
 	// Second show groups
@@ -24,9 +36,47 @@ public class HubHomeController {
 	//		Ability to create responses
 	
 	@FXML
+    private ImageView imgSearch;
+
+    @FXML
+    private ImageView imgSortAlpha;
+
+    @FXML
+    private ImageView imgSortLike;
+
+    @FXML
+    private ScrollPane sPaneView;
+
+    @FXML
+    private TextField txtFieldSearch;
+    
+    public HubHomeController() { }
+
+    @FXML
+    void searchUsers(MouseEvent event) {
+
+    }
+
+    @FXML
+    void sortAlpha(MouseEvent event) {
+
+    }
+
+    @FXML
+    void sortSuspensions(MouseEvent event) {
+
+    }
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    	showCategories();
+    }
+	
+	@FXML
 	void showCategories() {
 		persistence.loadData();
 		categoryManager = persistence.getCategoryManager();
+		VBox vBoxCategories = new VBox();
 		
 		ArrayList<Category> categories = new ArrayList<>(categoryManager.getHashMap().values());
 		for (Category category : categories) {
@@ -34,35 +84,38 @@ public class HubHomeController {
 			fxmlLoader.setLocation(getClass().getResource("CategoryItem.fxml"));
 			
 			try {
-				VBox vBox = (VBox) fxmlLoader.load();
+				VBox vBox = fxmlLoader.load();
 				CategoryItemController categoryController = fxmlLoader.getController();
 				categoryController.setData(category);
-				sPaneView.setContent(vBox);
+				vBoxCategories.getChildren().add(vBox);
 			}
 			catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		
+		sPaneView.setContent(vBoxCategories);
 	}
 	
-	@FXML
-	void showGroups() {
+	void showGroups(Category category) {
 		persistence.loadData();
 		groupManager = persistence.getGroupManager();
 		
 		ArrayList<Group> groups = new ArrayList<>(groupManager.getHashMap().values());
 		for (Group group : groups) {
-			FXMLLoader fxmlLoader = new FXMLLoader();
-			fxmlLoader.setLocation(getClass().getResource("GroupItem.fxml"));
-			
-			try {
-				VBox vBox = (VBox) fxmlLoader.load();
-				GroupItemController groupController = fxmlLoader.getController();
-				groupController.setData(group);
-				sPaneView.setContent(vBox);
-			}
-			catch (IOException e) {
-				e.printStackTrace();
+			if (group.getCategory().getTitle() == category.getTitle()) {
+				FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(getClass().getResource("GroupItem.fxml"));
+				
+				try {
+					VBox vBox = (VBox) fxmlLoader.load();
+					GroupItemController groupController = fxmlLoader.getController();
+					groupController.setData(group);
+					sPaneView.setContent(vBox);
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -72,8 +125,7 @@ public class HubHomeController {
 		
 	}
 	
-	@FXML
-	void showPosts() {
+	void showPosts(Group group) {
 		persistence.loadData();
 		postManager = persistence.getPostManager();
 		
@@ -107,8 +159,7 @@ public class HubHomeController {
 	// ADD
 	// Ability to upvote/downvote post other than own
 	
-	@FXML
-	void showResponses() {
+	void showResponses(Post post) {
 		persistence.loadData();
 		responseManager = persistence.getResponseManager();
 		
