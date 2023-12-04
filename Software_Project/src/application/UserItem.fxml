@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="600.0" styleClass="extra-rounded" stylesheets="@application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GroupItemController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="600.0" styleClass="extra-rounded" stylesheets="@application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UserItemController">
    <children>
-      <HBox fx:id="hBoxGroup" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css">
+      <HBox fx:id="hBoxUser" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css">
          <children>
-            <Label fx:id="lblGroup" text="Group">
+            <Label fx:id="lblUsername" text="Username">
                <font>
                   <Font size="36.0" />
                </font>

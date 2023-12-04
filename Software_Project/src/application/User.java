@@ -1,8 +1,12 @@
 package application;
 
+import java.util.ArrayList;
+
 public class User {
 	
 	private String name, username, password, birthday, country, city, state, role;
+	private ArrayList<Group> suspendedGroups = new ArrayList<Group>();
+	private ArrayList<Group> bannedGroups = new ArrayList<>();
 	
 	public User (String name, String username, String password, String birthday, 
 				 String city, String state, String country) {
@@ -77,6 +81,22 @@ public class User {
 	
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	public ArrayList<Group> getSuspensions() {
+		return this.suspendedGroups;
+	}
+	
+	public void addSuspension(Group group) {
+		this.suspendedGroups.add(group);
+	}
+	
+	public ArrayList<Group> getBans() {
+		return this.bannedGroups;
+	}
+	
+	public void addBan(Group group) {
+		this.bannedGroups.add(group);
 	}
 	
 	public boolean equals(Object obj) {

@@ -65,4 +65,8 @@ public class HubController implements Initializable {
     		e.printStackTrace();
     	}
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'Miguel' of https://github.com/vsu-se/23fa_team7.git

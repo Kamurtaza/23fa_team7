@@ -31,7 +31,7 @@
                         <Image url="@../../Images/SortAlphaAscend.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="imgSortLike" fitHeight="75.0" fitWidth="75.0" onMouseClicked="#sortLikes">
+                  <ImageView fx:id="imgSortLike" fitHeight="75.0" fitWidth="75.0" onMouseClicked="#sortSuspensions">
                      <image>
                         <Image url="@../../Images/SortLikeAscend.png" />
                      </image>
