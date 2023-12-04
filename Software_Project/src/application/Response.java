@@ -9,11 +9,13 @@ public class Response {
 	private Post post;
 	HashMap<String, Response> responses = new HashMap<String, Response>();
 	private Response parentResponse;
+	private String author;
 	
-	public Response(String text, Post post) {
-		this.text = text;
-		this.post = post;
-	}
+	public Response(String text, Post post, String author) {
+        this.text = text;
+        this.post = post;
+        this.author = author;
+    }
 	
 	public String getText() {
 		return this.text;
@@ -66,6 +68,10 @@ public class Response {
 		}
 		return false;
 	}
+	
+	  public String getAuthor() {
+	        return this.author;
+	    }
 	
 	public String toString() {
 		String info = "Response: " + text + "\nResponses: ";

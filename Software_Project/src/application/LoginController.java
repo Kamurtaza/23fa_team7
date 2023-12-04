@@ -47,6 +47,7 @@ public class LoginController {
 			stage = (Stage) btnLogin.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("Hub.fxml"));
 			
+			
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
