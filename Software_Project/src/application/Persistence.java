@@ -2,6 +2,8 @@ package application;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -201,9 +203,9 @@ public class Persistence {
 		String title = (String)obj.get("title");
 		String text = (String)obj.get("text");
 		String parentGroup = (String)obj.get("parentGroup");
-		boolean isFlagged = (boolean)obj.get("isFlagged");
-
-		Post post = new Post(title, text, groupManager.getGroup(parentGroup), isFlagged);
+		LocalDate date = (LocalDate)obj.get("date");
+		LocalTime time = (LocalTime)obj.get("time");
+		Post post = new Post(title, text, groupManager.getGroup(parentGroup), date, time);
 		return post;
 	}
 	

@@ -2,6 +2,8 @@ package unit_tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -9,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import application.Category;
 import application.Group;
 import application.GroupManager;
+import application.Post;
 
 class GroupManagerTest {
 
@@ -68,6 +71,31 @@ class GroupManagerTest {
 	}
 	
 	@Test
+	void testPostList_Success() {
+		GroupManager gm = buildGMWithPosts();
+		Category c1 = new Category("Mathematics");
+		Group g1 = new Group("Calculus 1", c1);
+		Post p1 = new Post(g1, "I don't know how to do derivatives. Help!", 
+				gm.getGroup("Calculus 1").getPost(1).getDate(), gm.getGroup("Calculus 1").getPost(0).getTime());
+		Post p2 = new Post(g1, "I should probably study for my exam tonight.", 
+				gm.getGroup("Calculus 1").getPost(0).getDate(), gm.getGroup("Calculus 1").getPost(0).getTime());
+		g1.addPost(p1);
+		g1.addPost(p2);
+		ArrayList<Post> expected = new ArrayList<>();
+		expected.add(p1);
+		expected.add(p2);
+		assertEquals(expected, gm.postList(g1));
+	}
+	
+	@Test
+	void testPostList_Failure() {
+		GroupManager gm = buildGMWithPosts();
+		Category c1 = new Category("Mathematics");
+		Group g1 = new Group("Linear Algebra", c1);
+		assertNull(gm.postList(g1));
+	}
+	
+	@Test
 	void testToString() {
 		GroupManager gm = buildGM();
 		String expected = "Groups:\nCalculus 1\nBiology\n";
@@ -75,7 +103,7 @@ class GroupManagerTest {
 	}
 
 	/*
-	 * HELPER METHOD
+	 * HELPER METHODS
 	 */
 	
 	public GroupManager buildGM() {
@@ -86,6 +114,22 @@ class GroupManagerTest {
 		Group g2 = new Group("Biology", c2);
 		gm.addGroup(g1);
 		gm.addGroup(g2);
+		return gm;
+	}
+	
+	public GroupManager buildGMWithPosts() {
+		LocalDate date1 = LocalDate.now();
+		LocalTime time1 = LocalTime.now();
+		GroupManager gm = new GroupManager();
+		Category c1 = new Category("Mathematics");
+		Group g1 = new Group("Calculus 1", c1);
+		Post p = new Post(g1, "I don't know how to do derivatives. Help!", date1, time1);
+		LocalDate date2 = LocalDate.now();
+		LocalTime time2 = LocalTime.now();
+		Post p2 = new Post(g1, "I should probably study for my exam tonight.", date2, time2);
+		g1.addPost(p2);
+		g1.addPost(p);
+		gm.addGroup(g1);
 		return gm;
 	}
 }
