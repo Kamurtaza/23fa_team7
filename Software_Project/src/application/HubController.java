@@ -5,11 +5,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 public class HubController implements Initializable {
 
@@ -39,6 +42,7 @@ public class HubController implements Initializable {
 
     @FXML
     void handleChangeView(ActionEvent event) {
+
 		try {
 			String requestedPage = ((Button) event.getSource()).getId();
 			

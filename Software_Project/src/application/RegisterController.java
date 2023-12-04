@@ -33,13 +33,14 @@ public class RegisterController {
 	private TextField txtAreaCity;
 	@FXML
 	Hyperlink linkBack;
-	
+
 	Stage stage;
 	Parent root;
 	Scene scene;
-	
+
 	@FXML
 	private void handleRegisterEvent(ActionEvent event) throws Exception {
+
 		String username = txtAreaUsername.getText();
 		String password = txtAreaPassword.getText();
 		String rePassword = txtAreaPasswordConfirm.getText();
@@ -59,7 +60,7 @@ public class RegisterController {
 			persistence.loadData();
 			persistence.getUserManager().addUser(user);
 			persistence.saveData();
-			
+
 			stage = (Stage) linkBack.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("Login.fxml"));
 			
@@ -72,12 +73,12 @@ public class RegisterController {
 		}
 		
 	}
-	
+
 	@FXML
 	private void handleReturnEvent(ActionEvent event) throws Exception {
 		stage = (Stage) linkBack.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-		
+
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();

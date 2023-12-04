@@ -15,6 +15,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class Persistence {
 	
 	private UserManager userManager = new UserManager();
@@ -59,6 +62,20 @@ public class Persistence {
 		catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public JSONObject getJsonFile() {
+		JSONParser jsonParser = new JSONParser();
+		JSONObject storedData = null;
+		
+		try (FileReader reader = new FileReader(DATA)) {
+			Object obj = jsonParser.parse(reader);
+			storedData = (JSONObject) obj;
+		}
+		catch (IOException | ParseException e) {
+			e.printStackTrace();
+		}
+		return storedData;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -263,6 +280,7 @@ public class Persistence {
 			obj.put("title", post.getTitle());
 			obj.put("text", post.getText());
 			obj.put("parentGroup", post.getGroup().getTitle());
+			obj.put("isFlagged", post.isFlagged());
 			postsArray.add(obj);
 		}
 		
@@ -312,11 +330,31 @@ public class Persistence {
 		allData.put("responses", responses.get("responses"));
 		allData.put("responseResponses", responseResponses.get("responseResponses"));
 		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String jsonData = gson.toJson(allData);
+		
 		try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(DATA, false))) {
-			fileWriter.write(allData.toJSONString());
+			fileWriter.write(jsonData);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public void updatePostToJSON(Post post) {
+		if(storedData != null) {
+			JSONArray postArray = (JSONArray) storedData.get("posts");
+			for(Object obj : postArray) {
+				JSONObject postObject = (JSONObject) obj;
+				String title = (String) postObject.get("title");
+				if(title.equals(post.getTitle())) {
+					postObject.put("text", post.getText());
+					postObject.put("isFlagged", post.isFlagged());
+					break;
+				}
+			}
+			saveData();
 		}
 	}
 }

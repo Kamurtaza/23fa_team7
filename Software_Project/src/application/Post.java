@@ -9,6 +9,8 @@ public class Post {
 	
 	private String title, text;
 	private Group group;
+	private boolean isFlagged;
+	private String flagged;
 	HashMap<String, Response> responses = new HashMap<String, Response>();
 	private LocalDate date;
 	private LocalTime time;
@@ -37,6 +39,7 @@ public class Post {
 	public void setText(String text) {
 		this.text = text;
 	}
+	
 	
 	public Group getGroup() {
 		return this.group;
@@ -110,6 +113,18 @@ public class Post {
 		}
 		
 		return info;
+	}
+	
+	public void setFlag() {
+		isFlagged = true;
+	}
+	
+	public void removeFlag() {
+		isFlagged = false;
+	}
+
+	public boolean isFlagged() {
+		return isFlagged;
 	}
 	
 }

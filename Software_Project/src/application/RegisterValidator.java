@@ -23,6 +23,7 @@ public class RegisterValidator {
 	public static boolean usernameValid(String username) {
 		if (!username.isEmpty() && !userManager.hasUser(username)) {
 			return true;
+
 		}
 		return false;
 	}
