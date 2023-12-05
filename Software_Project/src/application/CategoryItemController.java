@@ -34,10 +34,9 @@ public class CategoryItemController implements Initializable {
 			fxmlLoader.load();
 			HubHomeController hubController = fxmlLoader.getController();
 			Persistence persistence = new Persistence();
+			persistence.loadData();
 			CategoryManager categoryManager = persistence.getCategoryManager();
-			
-			Category test = categoryManager.getCategory(lblCategory.getText());
-			
+						
 			hubController.showGroups(categoryManager.getCategory(lblCategory.getText()));
 		}
 		catch (IOException e) {

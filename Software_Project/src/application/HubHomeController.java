@@ -77,8 +77,9 @@ public class HubHomeController implements Initializable {
 		persistence.loadData();
 		categoryManager = persistence.getCategoryManager();
 		VBox vBoxCategories = new VBox();
-		
+				
 		ArrayList<Category> categories = new ArrayList<>(categoryManager.getHashMap().values());
+		System.out.println(categories);
 		for (Category category : categories) {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(getClass().getResource("CategoryItem.fxml"));
@@ -98,26 +99,33 @@ public class HubHomeController implements Initializable {
 	}
 	
 	void showGroups(Category category) {
+		selectedCategory = category;
 		persistence.loadData();
 		groupManager = persistence.getGroupManager();
+		System.out.println(groupManager.getNumGroups());
+		System.out.println(selectedCategory.getTitle());
 		
 		ArrayList<Group> groups = new ArrayList<>(groupManager.getHashMap().values());
+		
+		VBox vBoxGroups = new VBox();
 		for (Group group : groups) {
-			if (group.getCategory().getTitle() == category.getTitle()) {
-				FXMLLoader fxmlLoader = new FXMLLoader();
-				fxmlLoader.setLocation(getClass().getResource("GroupItem.fxml"));
-				
-				try {
-					VBox vBox = (VBox) fxmlLoader.load();
-					GroupItemController groupController = fxmlLoader.getController();
-					groupController.setData(group);
-					sPaneView.setContent(vBox);
-				}
-				catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+	        System.out.println(group.getTitle());
+	        System.out.println(selectedCategory.getTitle());
+	        if (group.getCategory().getTitle().equals(selectedCategory.getTitle())) {
+	            FXMLLoader fxmlLoader = new FXMLLoader();
+	            fxmlLoader.setLocation(getClass().getResource("GroupItem.fxml"));
+
+	            try {
+	                VBox singleGroup = (VBox) fxmlLoader.load(); // Load GroupItem.fxml into a VBox
+	                GroupItemController groupController = fxmlLoader.getController();
+	                groupController.setData(group);
+	                vBoxGroups.getChildren().add(singleGroup); // Add singleGroup to vBoxGroups
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+		sPaneView.setContent(vBoxGroups);
 	}
 	
 	@FXML

@@ -10,7 +10,6 @@ public class Post {
 	private String title, text;
 	private Group group;
 	private boolean isFlagged;
-	private String flagged;
 	HashMap<String, Response> responses = new HashMap<String, Response>();
 	private LocalDate date;
 	private LocalTime time;

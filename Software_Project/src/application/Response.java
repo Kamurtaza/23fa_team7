@@ -24,6 +24,9 @@ public class Response {
 	public void setText(String text) {
 		this.text = text;
 	}
+	public String getAuthor() {
+		return this.author;
+	}
 	
 	public Post getPost() {
 		return this.post;
@@ -69,9 +72,7 @@ public class Response {
 		return false;
 	}
 	
-	  public String getAuthor() {
-	        return this.author;
-	    }
+	  
 	
 	public String toString() {
 		String info = "Response: " + text + "\nResponses: ";
