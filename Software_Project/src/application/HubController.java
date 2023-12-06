@@ -9,8 +9,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -39,6 +42,12 @@ public class HubController implements Initializable {
 
     @FXML
     private AnchorPane mainView;
+    
+    @FXML
+    private Button NewCategory;
+    
+    @FXML
+    private TextField categoryNameInput;
 
     @FXML
     void handleChangeView(ActionEvent event) {
@@ -64,6 +73,17 @@ public class HubController implements Initializable {
     	catch (IOException e) {
     		e.printStackTrace();
     	}
+    }
+    
+    @FXML
+    void createNewCategory(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("HubHome.fxml"));
+        Parent root = loader.load();
+        HubHomeController controller = loader.getController();
+
+        String name = categoryNameInput.getText().trim();
+        controller.createNewCategory(name);
+        categoryNameInput.clear();
     }
 }
 

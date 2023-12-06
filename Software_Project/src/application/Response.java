@@ -18,6 +18,7 @@ public class Response {
 	
 	public Response(String text, Post post) {
 		this.text = text;
+		this.post = post;
   }
 	public Response(String text, Post post, User author) {
 		this.text = text;

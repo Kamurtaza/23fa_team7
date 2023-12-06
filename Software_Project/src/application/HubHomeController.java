@@ -1,5 +1,6 @@
 package application;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
@@ -69,7 +70,41 @@ public class HubHomeController implements Initializable {
     	}
     	displayFilteredCategories(filteredCategories);
     }
-
+    
+    private void displayFilteredCategories(ArrayList<Category> filteredCategories) {
+		VBox vBoxFilteredCategories = new VBox();
+		for (Category category : filteredCategories) {
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(getClass().getResource("CategoryItem.fxml"));
+			
+			try {
+				VBox vBox = fxmlLoader.load();
+				CategoryItemController categoryController = fxmlLoader.getController();
+				categoryController.setData(category);
+				vBoxFilteredCategories.getChildren().add(vBox);
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		sPaneView.setContent(vBoxFilteredCategories);
+	}
+    
+    void createNewCategory(String name) {
+		Persistence persistence = new Persistence();
+		persistence.loadData();
+		CategoryManager categoryManager = persistence.getCategoryManager();
+		
+		String newCategoryName = name.trim();
+		if(!newCategoryName.isEmpty()) {
+			Category newCategory = new Category(newCategoryName);
+			categoryManager.addCategory(newCategory);
+			persistence.saveData();
+			sPaneView.setContent(null);
+			refreshContent();
+		}
+	}
+    
     @FXML
     void sortAlpha(MouseEvent event) {
     	System.out.println("We are now begining to compare");
@@ -109,7 +144,7 @@ public class HubHomeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     	showCategories();
     }
-	
+    	
 	@FXML
 	void showCategories() {
 		persistence.loadData();
@@ -235,27 +270,31 @@ public class HubHomeController implements Initializable {
 	void flagResponse() {
 		
 	}
-	
-	private void displayFilteredCategories(ArrayList<Category> filteredCategories) {
-		VBox vBoxFilteredCategories = new VBox();
-		for (Category category : filteredCategories) {
-			FXMLLoader fxmlLoader = new FXMLLoader();
-			fxmlLoader.setLocation(getClass().getResource("CategoryItem.fxml"));
-			
-			try {
-				VBox vBox = fxmlLoader.load();
-				CategoryItemController categoryController = fxmlLoader.getController();
-				categoryController.setData(category);
-				vBoxFilteredCategories.getChildren().add(vBox);
-			}catch(IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		sPaneView.setContent(vBoxFilteredCategories);
-	}
-	
 	// ADD
 	// Ability to upvote/downvote response other than own
+
+	public void refreshContent() {
+		persistence.loadData();
+		CategoryManager categoryManager = persistence.getCategoryManager();
+		ArrayList<Category> categories = new ArrayList<>(categoryManager.getHashMap().values());
+		displayNewCategories(categories);
+	}
+	 private void displayNewCategories(ArrayList<Category> newCategories) {
+			VBox vBoxNewCategories = new VBox();
+			for (Category category: newCategories) {
+				FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(getClass().getResource("CategoryItem.fxml"));
+				
+				try {
+					VBox vBox = fxmlLoader.load();
+					CategoryItemController categoryController = fxmlLoader.getController();
+					categoryController.setData(category);
+					vBoxNewCategories.getChildren().add(vBox);
+				}catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+			sPaneView.setContent(vBoxNewCategories);
+		}
 	
 }

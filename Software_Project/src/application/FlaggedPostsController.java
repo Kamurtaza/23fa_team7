@@ -49,7 +49,7 @@ public class FlaggedPostsController implements Initializable {
         }
 		borderView.getChildren().clear();
 		
-		BorderPane.setTopAnchor(flaggedPostsBox, 0.0);
+		AnchorPane.setTopAnchor(flaggedPostsBox, 0.0);
         AnchorPane.setBottomAnchor(flaggedPostsBox, 0.0);
         AnchorPane.setLeftAnchor(flaggedPostsBox, 0.0);
         AnchorPane.setRightAnchor(flaggedPostsBox, 0.0);

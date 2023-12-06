@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TextField?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="845.0" prefWidth="1310.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HubController">
    <right>
@@ -100,15 +101,27 @@
                         </Button>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="121.25" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="HubUsers" mnemonicParsing="false" onAction="#handleChangeView" prefHeight="91.0" prefWidth="182.0" styleClass="button-style" stylesheets="@application.css" text="List of Users">
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
+                 <HBox alignment="CENTER" prefHeight="121.25" prefWidth="200.0">
+    <children>
+        <Button fx:id="HubUsers" mnemonicParsing="false" onAction="#handleChangeView" prefHeight="91.0" prefWidth="182.0" styleClass="button-style" stylesheets="@application.css" text="List of Users" >
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </HBox.margin>
+        </Button>
+        
+        <Button fx:id="NewCategory" mnemonicParsing="false" onAction="#createNewCategory" prefHeight="91.0"  prefWidth="182.0" styleClass="button-style" stylesheets="@application.css" text="Add a category">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </HBox.margin>
+        </Button>
+        
+        <TextField fx:id="categoryNameInput" prefHeight="31.0" prefWidth="150.0" promptText="Enter Category Name">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </HBox.margin>
+        </TextField>
+    </children>
+</HBox>
                </children>
             </VBox>
          </children>
