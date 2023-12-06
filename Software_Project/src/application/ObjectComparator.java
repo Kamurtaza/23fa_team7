@@ -24,15 +24,15 @@ public class ObjectComparator implements Comparator<Object>{
 			}
 			return dateDifference;
 		}
-		else if (o1 instanceof Response && o2 instanceof Response) {
-			Response r1 = (Response) o1;
-			Response r2 = (Response) o2;
-			int dateDifference = r1.getDate().compareTo(r2.getDate());
-			if(dateDifference == 0) {
-				return r1.getTime().compareTo(r2.getTime());
-			}
-			return dateDifference;
-		}
+//		else if (o1 instanceof Response && o2 instanceof Response) {
+//			Response r1 = (Response) o1;
+//			Response r2 = (Response) o2;
+//			int dateDifference = r1.getDate().compareTo(r2.getDate());
+//			if(dateDifference == 0) {
+//				return r1.getTime().compareTo(r2.getTime());
+//			}
+//			return dateDifference;
+//		}
 		return 0;
 	}
 }

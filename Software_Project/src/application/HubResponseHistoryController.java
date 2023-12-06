@@ -14,13 +14,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
-public class HubFlaggedPostsController implements Initializable {
-
+public class HubResponseHistoryController implements Initializable {
+	
 	private Persistence persistence = new Persistence();
-	private PostManager postManager = new PostManager();
+	private ResponseManager responseManager = new ResponseManager();
 	
 	@FXML
-	private VBox flaggedDashboard;
+	private VBox suspendedDashboard;
 	
     @FXML
     private ImageView imgSearch;
@@ -36,9 +36,9 @@ public class HubFlaggedPostsController implements Initializable {
 
     @FXML
     private TextField txtFieldSearch;
-	
-	public HubFlaggedPostsController() { }
-	
+
+    public HubResponseHistoryController() { }
+
     @FXML
     void searchUsers(MouseEvent event) {
 
@@ -57,29 +57,25 @@ public class HubFlaggedPostsController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		persistence.loadData();
-		postManager = persistence.getPostManager();
-		VBox vBoxPosts = new VBox();
+		responseManager = persistence.getResponseManager();
+		VBox vBoxResponses = new VBox();
 		
-		postManager.getPost("Predators are awesome!").setFlagged(true);
-		
-		ArrayList<Post> posts = new ArrayList<>(postManager.getHashMap().values());
-		for (Post post : posts) {
-			if (post.getFlagged() == true) {
-				FXMLLoader fxmlLoader = new FXMLLoader();
-				fxmlLoader.setLocation(getClass().getResource("FlaggedPostItem.fxml"));
-				
-				try {
-					VBox vBox = (VBox) fxmlLoader.load();
-					FlaggedPostItemController flaggedController = fxmlLoader.getController();
-					flaggedController.setData(post);
-					vBoxPosts.getChildren().add(vBox);
-				}
-				catch (IOException e) {
-					e.printStackTrace();
-				}
+		ArrayList<Response> responses = new ArrayList<>(responseManager.getHashMap().values());
+		for (Response response : responses) {
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(getClass().getResource("ResponseHistoryItem.fxml"));
+			
+			try {
+				VBox vBox = (VBox) fxmlLoader.load();
+				ResponseHistoryItemController responseController = fxmlLoader.getController();
+				responseController.setData(response);
+				vBoxResponses.getChildren().add(vBox);
+			}
+			catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 		
-		sPaneView.setContent(vBoxPosts);
+		sPaneView.setContent(vBoxResponses);
 	}
 }

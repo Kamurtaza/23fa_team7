@@ -152,7 +152,6 @@ public class HubHomeController implements Initializable {
 		VBox vBoxCategories = new VBox();
 				
 		ArrayList<Category> categories = new ArrayList<>(categoryManager.getHashMap().values());
-		System.out.println(categories);
 		for (Category category : categories) {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(getClass().getResource("CategoryItem.fxml"));
@@ -175,15 +174,11 @@ public class HubHomeController implements Initializable {
 		selectedCategory = category;
 		persistence.loadData();
 		groupManager = persistence.getGroupManager();
-		System.out.println(groupManager.getNumGroups());
-		System.out.println(selectedCategory.getTitle());
 		
 		ArrayList<Group> groups = new ArrayList<>(groupManager.getHashMap().values());
 		
 		VBox vBoxGroups = new VBox();
 		for (Group group : groups) {
-	        System.out.println(group.getTitle());
-	        System.out.println(selectedCategory.getTitle());
 	        if (group.getCategory().getTitle().equals(selectedCategory.getTitle())) {
 	            FXMLLoader fxmlLoader = new FXMLLoader();
 	            fxmlLoader.setLocation(getClass().getResource("GroupItem.fxml"));

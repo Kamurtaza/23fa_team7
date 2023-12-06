@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#categoryClicked" prefHeight="85.0" prefWidth="600.0" styleClass="extra-rounded" stylesheets="@application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CategoryItemController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="600.0" styleClass="extra-rounded" stylesheets="@application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ResponseHistoryItemController">
    <children>
-      <HBox fx:id="hBoxCategory" alignment="CENTER_LEFT" onMouseClicked="#categoryClicked" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css">
+      <HBox fx:id="hBoxCategory" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css">
          <children>
-            <Label fx:id="lblCategory" text="Category">
+            <Label fx:id="lblResponseText" text="Category">
                <font>
                   <Font size="36.0" />
                </font>

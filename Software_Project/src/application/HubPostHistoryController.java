@@ -14,13 +14,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
-public class HubFlaggedResponsesController implements Initializable {
-	
+public class HubPostHistoryController implements Initializable {
+
 	private Persistence persistence = new Persistence();
-	private ResponseManager responseManager = new ResponseManager();
+	private PostManager postManager = new PostManager();
 	
 	@FXML
-	private VBox flaggedDashboard;
+	private VBox suspendedDashboard;
 	
     @FXML
     private ImageView imgSearch;
@@ -37,8 +37,8 @@ public class HubFlaggedResponsesController implements Initializable {
     @FXML
     private TextField txtFieldSearch;
 
-	public HubFlaggedResponsesController() { }
-	
+    public HubPostHistoryController() { }
+
     @FXML
     void searchUsers(MouseEvent event) {
 
@@ -53,30 +53,29 @@ public class HubFlaggedResponsesController implements Initializable {
     void sortSuspensions(MouseEvent event) {
 
     }
-    
+	
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	persistence.loadData();
-    	responseManager = persistence.getResponseManager();
+    	postManager = persistence.getPostManager();
+    	VBox vBoxPosts = new VBox();
     	
-    	responseManager.getResponse("Yeah but for $20 though? It should've been base game.").setFlagged(true);
-    	
-    	ArrayList<Response> responses = new ArrayList<>(responseManager.getHashMap().values());
-    	for (Response response : responses) {
-    		if (response.getFlagged() == true) {
-    			FXMLLoader fxmlLoader = new FXMLLoader();
-    			fxmlLoader.setLocation(getClass().getResource("FlaggedResponseItem.fxml"));
-    			
-    			try {
-    				VBox vBox = (VBox) fxmlLoader.load();
-    				FlaggedResponseItemController flaggedController = fxmlLoader.getController();
-    				flaggedController.setData(response);
-    				sPaneView.setContent(vBox);
-    			}
-    			catch (IOException e) {
-    				e.printStackTrace();
-    			}
+    	ArrayList<Post> posts = new ArrayList<>(postManager.getHashMap().values());
+    	for (Post post : posts) {
+    		FXMLLoader fxmlLoader = new FXMLLoader();
+    		fxmlLoader.setLocation(getClass().getResource("PostHistoryItem.fxml"));
+    		
+    		try {
+    			VBox vBox = (VBox) fxmlLoader.load();
+    			PostHistoryItemController postController = fxmlLoader.getController();
+    			postController.setData(post);
+    			vBoxPosts.getChildren().add(vBox);
+    		}
+    		catch (IOException e) {
+    			e.printStackTrace();
     		}
     	}
+    	
+    	sPaneView.setContent(vBoxPosts);
     }
 }
