@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXMLLoader;
@@ -54,15 +56,51 @@ public class HubHomeController implements Initializable {
 
     @FXML
     void searchUsers(MouseEvent event) {
-
+    	ArrayList<Category> filteredCategories = new ArrayList<Category>();
+    	String searchText = txtFieldSearch.getText().trim().toLowerCase();
+    	persistence.loadData();
+    	categoryManager = persistence.getCategoryManager();
+    	ArrayList<Category> allCategories = new ArrayList<Category>(categoryManager.getHashMap().values());
+    	for (Category category : allCategories) {
+    		String categoryTitle = category.getTitle().toLowerCase();
+    		if(categoryTitle.contains(searchText)) {
+				filteredCategories.add(category);
+    		}
+    	}
+    	displayFilteredCategories(filteredCategories);
     }
 
     @FXML
     void sortAlpha(MouseEvent event) {
-
+    	System.out.println("We are now begining to compare");
+    	persistence.loadData();
+    	categoryManager = persistence.getCategoryManager();
+    	ArrayList<Category> allCategories = new ArrayList<Category>(categoryManager.getHashMap().values());
+    	ObjectComparator objectComparator = new ObjectComparator();
+    	Collections.sort(allCategories, objectComparator);
+    	
+    	displaySortedCategories(allCategories);
     }
 
-    @FXML
+    private void displaySortedCategories(ArrayList<Category> sortedCategories) {
+		VBox vBoxSortedCategories = new VBox();
+		for (Category category: sortedCategories) {
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(getClass().getResource("CategoryItem.fxml"));
+			
+			try {
+				VBox vBox = fxmlLoader.load();
+				CategoryItemController categoryController = fxmlLoader.getController();
+				categoryController.setData(category);
+				vBoxSortedCategories.getChildren().add(vBox);
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		sPaneView.setContent(vBoxSortedCategories);
+	}
+
+	@FXML
     void sortSuspensions(MouseEvent event) {
 
     }
@@ -196,6 +234,25 @@ public class HubHomeController implements Initializable {
 	@FXML
 	void flagResponse() {
 		
+	}
+	
+	private void displayFilteredCategories(ArrayList<Category> filteredCategories) {
+		VBox vBoxFilteredCategories = new VBox();
+		for (Category category : filteredCategories) {
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(getClass().getResource("CategoryItem.fxml"));
+			
+			try {
+				VBox vBox = fxmlLoader.load();
+				CategoryItemController categoryController = fxmlLoader.getController();
+				categoryController.setData(category);
+				vBoxFilteredCategories.getChildren().add(vBox);
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		sPaneView.setContent(vBoxFilteredCategories);
 	}
 	
 	// ADD

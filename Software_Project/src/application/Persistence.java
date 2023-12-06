@@ -211,8 +211,9 @@ public class Persistence {
 	
 	public Response convertToResponse(JSONObject obj) {
 		String text = (String)obj.get("text");
-		String parentPost = (String)obj.get("parentPost");
-		Response response = new Response(text, postManager.getPost(parentPost), parentPost);
+		String parentPostID = (String)obj.get("parentPost");
+		Post parentPost = postManager.getPost(parentPostID);
+		Response response = new Response(text, parentPost);
 		return response;
 	}
 	
